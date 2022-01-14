@@ -30,6 +30,7 @@ public class ColorDetect extends LinearOpMode
 {
     private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
+    static double elementPosition;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -43,6 +44,7 @@ public class ColorDetect extends LinearOpMode
     DcMotor rightMotor;
     DcMotor armMotor;
     Servo carasouelServo;
+    DcMotor flippyMotor;
 
     @Override
     public void runOpMode()
@@ -67,6 +69,8 @@ public class ColorDetect extends LinearOpMode
 
         armMotor = hardwareMap.dcMotor.get("Arm_Motor"); // initializing arm motor
 
+        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector
+
         carasouelServo = hardwareMap.servo.get("Carasouel_Servo");
         carasouelServo.setPosition(0.5);
         carasouelServo.setDirection(Servo.Direction.REVERSE);
@@ -88,6 +92,22 @@ public class ColorDetect extends LinearOpMode
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
+            if(elementPosition == 1){
+                armMotor.setPower(-0.5);
+                sleep(1000);
+                //encoderDrive();
+                armMotor.setPower(0.0);
+            } else if (elementPosition == 2) {
+                flippyMotor.setPower(0.5);
+                sleep(1000);
+                flippyMotor.setPower(0.0);
+                //encoderDrive();
+            } else if (elementPosition == 3) {
+                carasouelServo.setPosition(1.0);
+                sleep(1000);
+                carasouelServo.setPosition(0.5);
+                //encoderDrive();
+            }
         }
     }
 
@@ -112,11 +132,11 @@ public class ColorDetect extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(109 + 200,100); //used to be 98
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(181 + 200,100);
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(253 + 200,100);
-        static final int REGION_WIDTH = 50; //used to be 20
-        static final int REGION_HEIGHT = 50; // same
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250); //used to be 109,98
+        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250); // 181, 98
+        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(475,250); // 253, 98
+        static final int REGION_WIDTH = 100; //used to be 20
+        static final int REGION_HEIGHT = 100; // same
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
@@ -248,7 +268,9 @@ public class ColorDetect extends LinearOpMode
              */
             if(max == avg1) // Was it from region 1?
             {
+                elementPosition = 1;
                 position = SkystonePosition.LEFT; // Record our analysis
+
                 /*
                  * Draw a solid rectangle on top of the chosen region.
                  * Simply a visual aid. Serves no functional purpose.
@@ -262,6 +284,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg2) // Was it from region 2?
             {
+                elementPosition = 2;
                 position = SkystonePosition.CENTER; // Record our analysis
                 /*
                  * Draw a solid rectangle on top of the chosen region.
@@ -276,6 +299,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg3) // Was it from region 3?
             {
+                elementPosition = 3;
                 position = SkystonePosition.RIGHT; // Record our analysis
                 /*
                  * Draw a solid rectangle on top of the chosen region.
@@ -291,7 +315,9 @@ public class ColorDetect extends LinearOpMode
 
             return input;
         }
-
+        /*
+         * Call this from the OpMode thread to obtain the latest analysis
+         */
         public SkystonePosition getAnalysis()
         {
             return position;
