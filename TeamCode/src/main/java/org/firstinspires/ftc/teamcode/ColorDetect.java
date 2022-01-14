@@ -25,21 +25,24 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Config
-@Autonomous(name = "Color Detect owo", group = "Linear Opmode")
+@Autonomous(name = "Color Detect", group = "Linear Opmode")
 public class ColorDetect extends LinearOpMode
 {
-    private OpenCvCamera webcam;
+    // Camera variables
+    private OpenCvCamera webcam;           
     SkystoneDeterminationPipeline pipeline;
     static double elementPosition;
 
+    //Encoder variables
     private ElapsedTime runtime = new ElapsedTime();
-
     static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION    = 20 ;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
+    
+    //Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor armMotor;
@@ -49,18 +52,15 @@ public class ColorDetect extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()); // initializing all camera elements
+     // initializing all camera elements
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
-        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-            @Override
-            public void onOpened() {webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);}
-
-            @Override
-            public void onError(int errorCode) {}
-        });
-
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {@Override public void onOpened() {webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);} @Override public void onError(int errorCode) {}});
+        
+        
+      // initializing all motor elements
         leftMotor = hardwareMap.dcMotor.get("Left_Motor"); // initializing left motor
         rightMotor = hardwareMap.dcMotor.get("Right_Motor"); // initializing right motor
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -92,9 +92,7 @@ public class ColorDetect extends LinearOpMode
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
-            if(elementPosition == 1){
-                armMotor.setPower(-0.5);
-                sleep(1000);
+            if(elementPosition == 10){
                 //encoderDrive();
                 armMotor.setPower(0.0);
             } else if (elementPosition == 2) {
@@ -132,11 +130,11 @@ public class ColorDetect extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250); //used to be 109,98
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250); // 181, 98
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(475,250); // 253, 98
-        static final int REGION_WIDTH = 100; //used to be 20
-        static final int REGION_HEIGHT = 100; // same
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250); 
+        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250); 
+        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(450,250); 
+        static final int REGION_WIDTH = 100; 
+        static final int REGION_HEIGHT = 100;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
@@ -205,27 +203,17 @@ public class ColorDetect extends LinearOpMode
         @Override
         public Mat processFrame(Mat input)
         {
-
-            /*
-             * Get the Cb channel of the input frame after conversion to YCrCb
-             */
             inputToCb(input);
 
-            /*
-             * Compute the average pixel value of each submat region. We're
-             * taking the average of a single channel buffer, so the value
-             * we need is at index 0. We could have also taken the average
-             * pixel value of the 3-channel image, and referenced the value
-             * at index 2 here.
-             */
             avg1 = (int) Core.mean(region1_Cb).val[0];
             avg2 = (int) Core.mean(region2_Cb).val[0];
             avg3 = (int) Core.mean(region3_Cb).val[0];
 
             /*
-             * Draw a rectangle showing sample region 1 on the screen.
-             * Simply a visual aid. Serves no functional purpose.
+             * The following rectangles are simply visual aid. They serve no functional purpose.
              */
+             
+            //region 1
             Imgproc.rectangle(
                     input, // Buffer to draw on
                     region1_pointA, // First point which defines the rectangle
@@ -233,10 +221,7 @@ public class ColorDetect extends LinearOpMode
                     RED, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
-            /*
-             * Draw a rectangle showing sample region 2 on the screen.
-             * Simply a visual aid. Serves no functional purpose.
-             */
+            // region 2
             Imgproc.rectangle(
                     input, // Buffer to draw on
                     region2_pointA, // First point which defines the rectangle
@@ -244,10 +229,7 @@ public class ColorDetect extends LinearOpMode
                     RED, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
-            /*
-             * Draw a rectangle showing sample region 3 on the screen.
-             * Simply a visual aid. Serves no functional purpose.
-             */
+            // region 3
             Imgproc.rectangle(
                     input, // Buffer to draw on
                     region3_pointA, // First point which defines the rectangle
@@ -268,28 +250,23 @@ public class ColorDetect extends LinearOpMode
              */
             if(max == avg1) // Was it from region 1?
             {
-                elementPosition = 1;
+                elementPosition = 1; // for use in the encoders
                 position = SkystonePosition.LEFT; // Record our analysis
 
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
+                //overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
                         region1_pointA, // First point which defines the rectangle
                         region1_pointB, // Second point which defines the rectangle
                         GREEN, // The color the rectangle is drawn in
-                        2); // Negative thickness means solid fill
+                        2); // Negative thickness means solid fill (Which we are not using)
             }
             else if(max == avg2) // Was it from region 2?
             {
                 elementPosition = 2;
                 position = SkystonePosition.CENTER; // Record our analysis
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
+                
+                // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
                         region2_pointA, // First point which defines the rectangle
@@ -301,10 +278,8 @@ public class ColorDetect extends LinearOpMode
             {
                 elementPosition = 3;
                 position = SkystonePosition.RIGHT; // Record our analysis
-                /*
-                 * Draw a solid rectangle on top of the chosen region.
-                 * Simply a visual aid. Serves no functional purpose.
-                 */
+                
+                // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
                         region3_pointA, // First point which defines the rectangle
