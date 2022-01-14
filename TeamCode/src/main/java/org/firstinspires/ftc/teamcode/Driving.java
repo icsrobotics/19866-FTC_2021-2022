@@ -33,7 +33,7 @@ public class Driving extends LinearOpMode {
 
         armMotor = hardwareMap.dcMotor.get("Arm_Motor"); // initializing arm motor
 
-        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector
+        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector (i wonder if this will show up)
 
         carasouelServo = hardwareMap.servo.get("Carasouel_Servo"); //initializing carousel
         carasouelServo.setPosition(0.5);
