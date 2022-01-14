@@ -21,12 +21,6 @@ public class ContourPipeline extends OpenCvPipeline {
     public static Scalar scalarLowerYCrCb = new Scalar(0.0, 0.0, 0.3);
     public static Scalar scalarUpperYCrCb = new Scalar(255.0, 0.0, 0.0);
 
-    // Green                                             Y      Cr     Cb
-    // public static Scalar scalarLowerYCrCb = new Scalar(  0.0, 0.0, 0.0);
-    // public static Scalar scalarUpperYCrCb = new Scalar(255.0, 120.0, 120.0);
-    // use this picture for you own color https://raw.githubusercontent.com/PinkToTheFuture/OpenCV_FreightFrenzy_2021-2022/main/7e8azlgi.bmp
-    // Note that the Cr and Cb values range between 0-255. this means that the origin of the coordinate system is (128,128)
-
     //Volatile bc accessed by opmode without sync
     public volatile boolean error = false;
     public volatile Exception debug;
