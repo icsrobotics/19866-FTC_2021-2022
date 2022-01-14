@@ -41,7 +41,7 @@ public class ColorDetect extends LinearOpMode
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
-	static final double LIFT_SPEED				= 0.2;
+    static final double LIFT_SPEED		= 0.2;
     
     //Motor variables
     DcMotor leftMotor;
@@ -84,7 +84,7 @@ public class ColorDetect extends LinearOpMode
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-		// Wait for the game to start (driver presses PLAY)
+	// Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         while (opModeIsActive())
@@ -97,40 +97,40 @@ public class ColorDetect extends LinearOpMode
             
             //AUTONOMOUS
             if (elementPosition == 1) { 
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+            encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
 				
-				armMotor.setPower();
-				flippyMotor();
-				sleep(); //how long to run
+	    armMotor.setPower();
+	    flippyMotor();
+	    sleep(); //how long to run
 				
-				encoderDrive();
+	    encoderDrive();
 				
-				telemetry.addData("Path", "Complete");
-        		telemetry.update();
+	    telemetry.addData("Path", "Complete");
+	    telemetry.update();
 				
             } else if (elementPosition == 2) {
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+              encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
 				
-				armMotor.setPower();
-				flippyMotor.setPower();
-				sleep(); //how long to run
+	      armMotor.setPower();
+	      flippyMotor.setPower();
+              sleep(); //how long to run
 				
-				encoderDrive();
+              encoderDrive();
 				
-				telemetry.addData("Path", "Complete");
-        		telemetry.update();
+	      telemetry.addData("Path", "Complete");
+	      telemetry.update();
 				
             } else if (elementPosition == 3) {
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+              encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
 				
-				armMotor.setPower();
-				flippyMotor.setPower();
-				sleep(); //how long to run
+	      armMotor.setPower();
+	      flippyMotor.setPower();
+	      sleep(); //how long to run
 				
-				encoderDrive();
+	      encoderDrive();
 				
-				telemetry.addData("Path", "Complete");
-       			telemetry.update();
+	      telemetry.addData("Path", "Complete");
+	      telemetry.update();
             }
         }
     }
