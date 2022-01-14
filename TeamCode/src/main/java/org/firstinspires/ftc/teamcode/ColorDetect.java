@@ -41,6 +41,7 @@ public class ColorDetect extends LinearOpMode
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
+	static final double LIFT_SPEED				= 0.2;
     
     //Motor variables
     DcMotor leftMotor;
@@ -52,26 +53,25 @@ public class ColorDetect extends LinearOpMode
     @Override
     public void runOpMode()
     {
-     // initializing all camera elements
+        //initializing all camera elements
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {@Override public void onOpened() {webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);} @Override public void onError(int errorCode) {}});
         
-        
-      // initializing all motor elements
-        leftMotor = hardwareMap.dcMotor.get("Left_Motor"); // initializing left motor
-        rightMotor = hardwareMap.dcMotor.get("Right_Motor"); // initializing right motor
+        //initializing all motor elements
+        leftMotor = hardwareMap.dcMotor.get("Left_Motor"); 
+        rightMotor = hardwareMap.dcMotor.get("Right_Motor");
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        armMotor = hardwareMap.dcMotor.get("Arm_Motor"); // initializing arm motor
-
-        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector
-
-        carasouelServo = hardwareMap.servo.get("Carasouel_Servo");
+        // initializing arm motor
+        armMotor = hardwareMap.dcMotor.get("Arm_Motor");
+        //initializing end effector
+        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
+        //initializing carasouel
+        carasouelServo = hardwareMap.servo.get("Carasouel_Servo"); 
         carasouelServo.setPosition(0.5);
         carasouelServo.setDirection(Servo.Direction.REVERSE);
 
@@ -79,10 +79,12 @@ public class ColorDetect extends LinearOpMode
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
+        // FTC Dashboard
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
+		// Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         while (opModeIsActive())
@@ -92,19 +94,43 @@ public class ColorDetect extends LinearOpMode
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
-            if(elementPosition == 10){
-                //encoderDrive();
-                armMotor.setPower(0.0);
+            
+            //AUTONOMOUS
+            if (elementPosition == 1) { 
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+				
+				armMotor.setPower();
+				flippyMotor();
+				sleep(); //how long to run
+				
+				encoderDrive();
+				
+				telemetry.addData("Path", "Complete");
+        		telemetry.update();
+				
             } else if (elementPosition == 2) {
-                flippyMotor.setPower(0.5);
-                sleep(1000);
-                flippyMotor.setPower(0.0);
-                //encoderDrive();
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+				
+				armMotor.setPower();
+				flippyMotor.setPower();
+				sleep(); //how long to run
+				
+				encoderDrive();
+				
+				telemetry.addData("Path", "Complete");
+        		telemetry.update();
+				
             } else if (elementPosition == 3) {
-                carasouelServo.setPosition(1.0);
-                sleep(1000);
-                carasouelServo.setPosition(0.5);
-                //encoderDrive();
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+				
+				armMotor.setPower();
+				flippyMotor.setPower();
+				sleep(); //how long to run
+				
+				encoderDrive();
+				
+				telemetry.addData("Path", "Complete");
+       			telemetry.update();
             }
         }
     }
@@ -250,7 +276,7 @@ public class ColorDetect extends LinearOpMode
              */
             if(max == avg1) // Was it from region 1?
             {
-                elementPosition = 1; // for use in the encoders
+                elementPosition = 1; // for use in the encoders, left
                 position = SkystonePosition.LEFT; // Record our analysis
 
                 //overlays a green rectangle
@@ -263,7 +289,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg2) // Was it from region 2?
             {
-                elementPosition = 2;
+                elementPosition = 2; //center
                 position = SkystonePosition.CENTER; // Record our analysis
                 
                 // overlays a green rectangle
@@ -276,7 +302,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg3) // Was it from region 3?
             {
-                elementPosition = 3;
+                elementPosition = 3; //right
                 position = SkystonePosition.RIGHT; // Record our analysis
                 
                 // overlays a green rectangle
