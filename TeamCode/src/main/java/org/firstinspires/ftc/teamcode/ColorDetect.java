@@ -102,9 +102,14 @@ public class ColorDetect extends LinearOpMode
 		sleep(3000);
 		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, 0.5, 0.2);
+		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 		armMotor.setPower(0.0);
-				
+		
+		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+        	armMotor.setPower(-0.5);
+        	encoderDrive(1, 5, 5, 2.5); // moves forwards
+        	armMotor.setPower(0.0);		
+		
 		telemetry.addData("Path", "Complete");
 		telemetry.update();
 					
@@ -114,8 +119,13 @@ public class ColorDetect extends LinearOpMode
 		sleep(1500);
 		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, 0.5, 0.2);
+		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 		armMotor.setPower(0.0);
+		
+		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+        	armMotor.setPower(-0.5);
+        	encoderDrive(1, 5, 5, 2.5); // moves forwards
+        	armMotor.setPower(0.0);	
 				
 		telemetry.addData("Path", "Complete");
 		telemetry.update();
@@ -126,8 +136,13 @@ public class ColorDetect extends LinearOpMode
 		sleep(500);
 		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, 0.5, 0.2);
+		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 		armMotor.setPower(0.0);
+		
+		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+        	armMotor.setPower(-0.5);
+        	encoderDrive(1, 5, 5, 2.5); // moves forwards
+        	armMotor.setPower(0.0);	
 				
 		telemetry.addData("Path", "Complete");
 		telemetry.update();
