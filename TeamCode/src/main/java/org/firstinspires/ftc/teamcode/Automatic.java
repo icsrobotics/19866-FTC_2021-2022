@@ -63,6 +63,8 @@ public class Automatic extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
+        
+        //going to carasouel
         carasouelServo.setPosition(1.0);
         encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
         encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
@@ -72,6 +74,7 @@ public class Automatic extends LinearOpMode {
         encoderDrive(0.1, -0.5,-0.5,0.5);
         sleep(3000);
         carasouelServo.setPosition(0.5);
+        
         encoderDrive(0.3, 1.0, 1.0, 1.0); // moves forwards
         encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
         armMotor.setPower(-0.5);
