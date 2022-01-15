@@ -97,40 +97,49 @@ public class ColorDetect extends LinearOpMode
             
             //AUTONOMOUS
             if (elementPosition == 1) { 
-            encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
-				
-	    armMotor.setPower();
-	    flippyMotor();
-	    sleep(); //how long to run
-				
-	    encoderDrive();
-				
-	    telemetry.addData("Path", "Complete");
-	    telemetry.update();
+						// start of carasoeul part
+            carasouelServo.setPosition(1.0);
+						encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+						encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+						encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+						encoderDrive(0.2, -1, -1, 0.5);
+						encoderDrive(0.1, -0.5,-0.5,0.5);
+						sleep(3000);
+						carasouelServo.setPosition(0.5);	
+						// end of carasouel part
+
+						telemetry.addData("Path", "Complete");
+						telemetry.update();
 				
             } else if (elementPosition == 2) {
-              encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
+							// start of carasoeul part
+            	carasouelServo.setPosition(1.0);
+							encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+							encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+							encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+							encoderDrive(0.2, -1, -1, 0.5);
+							encoderDrive(0.1, -0.5,-0.5,0.5);
+							sleep(3000);
+							carasouelServo.setPosition(0.5);
+							//end of carasouel part
 				
-	      armMotor.setPower();
-	      flippyMotor.setPower();
-              sleep(); //how long to run
-				
-              encoderDrive();
-				
-	      telemetry.addData("Path", "Complete");
-	      telemetry.update();
+	      			telemetry.addData("Path", "Complete");
+	      			telemetry.update();
 				
             } else if (elementPosition == 3) {
-              encoderDrive(TURN_SPEED, -0.75, 0.75, 1.0);
-				
-	      armMotor.setPower();
-	      flippyMotor.setPower();
-	      sleep(); //how long to run
-				
-	      encoderDrive();
-				
-	      telemetry.addData("Path", "Complete");
-	      telemetry.update();
+							// start of carasoeul part
+							carasouelServo.setPosition(1.0);
+							encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+							encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+							encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+							encoderDrive(0.2, -1, -1, 0.5);
+							encoderDrive(0.1, -0.5,-0.5,0.5);
+							sleep(3000);
+							carasouelServo.setPosition(0.5);
+							// end of carasouel part
+							
+							telemetry.addData("Path", "Complete");
+							telemetry.update();
             }
         }
     }
