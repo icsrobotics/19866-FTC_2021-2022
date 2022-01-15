@@ -97,49 +97,49 @@ public class ColorDetect extends LinearOpMode
             
             //AUTONOMOUS
             if (elementPosition == 1) { 
-						// start of carasoeul part
-            carasouelServo.setPosition(1.0);
-						encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
-						encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
-						encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
-						encoderDrive(0.2, -1, -1, 0.5);
-						encoderDrive(0.1, -0.5,-0.5,0.5);
-						sleep(3000);
-						carasouelServo.setPosition(0.5);	
-						// end of carasouel part
-
-						telemetry.addData("Path", "Complete");
-						telemetry.update();
+		// start of carasouel part
+		carasouelServo.setPosition(1.0);
+		encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+		encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+		encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+		encoderDrive(0.2, -1, -1, 0.5);
+		encoderDrive(0.1, -0.5,-0.5,0.5);
+		sleep(3000);
+		carasouelServo.setPosition(0.5);
+		//end of carasouel part
 				
+		telemetry.addData("Path", "Complete");
+		telemetry.update();
+					
             } else if (elementPosition == 2) {
-							// start of carasoeul part
-            	carasouelServo.setPosition(1.0);
-							encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
-							encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
-							encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
-							encoderDrive(0.2, -1, -1, 0.5);
-							encoderDrive(0.1, -0.5,-0.5,0.5);
-							sleep(3000);
-							carasouelServo.setPosition(0.5);
-							//end of carasouel part
+		// start of carasouel part
+		carasouelServo.setPosition(1.0);
+		encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+		encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+		encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+		encoderDrive(0.2, -1, -1, 0.5);
+		encoderDrive(0.1, -0.5,-0.5,0.5);
+		sleep(3000);
+		carasouelServo.setPosition(0.5);
+		//end of carasouel part
 				
-	      			telemetry.addData("Path", "Complete");
-	      			telemetry.update();
-				
+		telemetry.addData("Path", "Complete");
+		telemetry.update();
+		
             } else if (elementPosition == 3) {
-							// start of carasoeul part
-							carasouelServo.setPosition(1.0);
-							encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
-							encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
-							encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
-							encoderDrive(0.2, -1, -1, 0.5);
-							encoderDrive(0.1, -0.5,-0.5,0.5);
-							sleep(3000);
-							carasouelServo.setPosition(0.5);
-							// end of carasouel part
-							
-							telemetry.addData("Path", "Complete");
-							telemetry.update();
+		// start of carasouel part
+		carasouelServo.setPosition(1.0);
+		encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
+		encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
+		encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+		encoderDrive(0.2, -1, -1, 0.5);
+		encoderDrive(0.1, -0.5,-0.5,0.5);
+		sleep(3000);
+		carasouelServo.setPosition(0.5);
+		//end of carasouel part
+				
+		telemetry.addData("Path", "Complete");
+		telemetry.update();
             }
         }
     }
