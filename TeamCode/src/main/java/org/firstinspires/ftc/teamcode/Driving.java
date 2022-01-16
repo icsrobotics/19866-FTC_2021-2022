@@ -4,13 +4,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Config
 @TeleOp(name = "Driving", group = "Linear Opmode")
@@ -27,6 +30,9 @@ public class Driving extends LinearOpMode {
 
     boolean secondHalf = false;                 // Use to prevent multiple half-time warning rumbles.
     final double endGameTime = 110.0;              // Wait this many seconds before rumble-alert for half-time.
+
+    // Camera variables
+    private OpenCvCamera webcam;
 
     @Override public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -46,6 +52,20 @@ public class Driving extends LinearOpMode {
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = dashboard.getTelemetry();
+        FtcDashboard.getInstance().startCameraStream(webcam, 10);
+
+        //initializing all camera elements
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+            @Override public void onOpened() {
+                webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);
+            }
+            @Override public void onError(int errorCode) {
+                telemetry.addData("Camera", "Unavailable");
+                telemetry.update();
+            }
+        });
 
         //waiting for time to start
         waitForStart();
