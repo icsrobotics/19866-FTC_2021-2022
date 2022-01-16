@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonmous On Blue Side (Near Carasouel)", group = "Linear Opmode")
+@Autonomous(name = "Autonmous For Blue Side (Near Carasouel)", group = "Linear Opmode")
 public class BLUE-Automatic_1 extends LinearOpMode
 {
     // Camera variables
@@ -95,39 +95,67 @@ public class BLUE-Automatic_1 extends LinearOpMode
             sleep(50);
             
             //AUTONOMOUS
-            if (elementPosition == 1) { 
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+            if (elementPosition == 1) {
+                //turns and moves towards carasouel
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
+                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                //lifts arms for 2 seconds then end effector
                 armMotor.setPower(-0.2);
-                sleep(3000);
+                sleep(2000);
                 flippyMotor.setPower(-0.5);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
                 armMotor.setPower(0.0);
-
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                //turns and moves to warehouse
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5); // moves forwards
+                encoderDrive(1, 5, 5, 2.5);
                 armMotor.setPower(0.0);
 
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
 					
             } else if (elementPosition == 2) {
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+                //turns and moves towards carasouel
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
+                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                //lifts arms for 1.5 seconds then end effector
                 armMotor.setPower(-0.2);
                 sleep(1500);
                 flippyMotor.setPower(-0.5);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
                 armMotor.setPower(0.0);
-
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                //turns and moves to warehouse
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5); // moves forwards
+                encoderDrive(1, 5, 5, 2.5);
                 armMotor.setPower(0.0);
-				
-                telemetry.addData("Path", "Complete");
 
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
+
+            } else if (elementPosition == 3) {
+                //turns and moves towards carasouel
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
+                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                //lifts arms for 0.5 seconds then end effector
+                armMotor.setPower(-0.2);
+                sleep(500);
+                flippyMotor.setPower(-0.5);
+                armMotor.setPower(0.0);
+                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                //turns and moves to warehouse
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
+                armMotor.setPower(-0.5);
+                encoderDrive(1, 5, 5, 2.5);
+                armMotor.setPower(0.0);
+
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
+
+            } else {
+                telemetry.addData("Shipping Element", "Unavaliable");
+                telemetry.update();
+            }
         }
     }
 
