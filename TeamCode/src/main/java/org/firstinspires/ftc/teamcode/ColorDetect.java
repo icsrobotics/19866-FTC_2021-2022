@@ -97,55 +97,55 @@ public class ColorDetect extends LinearOpMode
             
             //AUTONOMOUS
             if (elementPosition == 1) { 
-		encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-		armMotor.setPower(-0.2);
-		sleep(3000);
-		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-		armMotor.setPower(0.0);
-		
-		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
-        	armMotor.setPower(-0.5);
-        	encoderDrive(1, 5, 5, 2.5); // moves forwards
-        	armMotor.setPower(0.0);		
-		
-		telemetry.addData("Path", "Complete");
-		telemetry.update();
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+                armMotor.setPower(-0.2);
+                sleep(3000);
+                flippyMotor.setPower(-0.5);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+                armMotor.setPower(0.0);
+
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+                armMotor.setPower(-0.5);
+                encoderDrive(1, 5, 5, 2.5); // moves forwards
+                armMotor.setPower(0.0);
+
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
 					
             } else if (elementPosition == 2) {
-		encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-		armMotor.setPower(-0.2);
-		sleep(1500);
-		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-		armMotor.setPower(0.0);
-		
-		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
-        	armMotor.setPower(-0.5);
-        	encoderDrive(1, 5, 5, 2.5); // moves forwards
-        	armMotor.setPower(0.0);	
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+                armMotor.setPower(-0.2);
+                sleep(1500);
+                flippyMotor.setPower(-0.5);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+                armMotor.setPower(0.0);
+
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+                armMotor.setPower(-0.5);
+                encoderDrive(1, 5, 5, 2.5); // moves forwards
+                armMotor.setPower(0.0);
 				
-		telemetry.addData("Path", "Complete");
-		telemetry.update();
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
 		
             } else if (elementPosition == 3) {
-		encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-		encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-		armMotor.setPower(-0.2);
-		sleep(500);
-		flippyMotor.setPower(-0.5);
-		encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-		armMotor.setPower(0.0);
-		
-		encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
-        	armMotor.setPower(-0.5);
-        	encoderDrive(1, 5, 5, 2.5); // moves forwards
-        	armMotor.setPower(0.0);	
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+                armMotor.setPower(-0.2);
+                sleep(500);
+                flippyMotor.setPower(-0.5);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+                armMotor.setPower(0.0);
+
+                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+                armMotor.setPower(-0.5);
+                encoderDrive(1, 5, 5, 2.5); // moves forwards
+                armMotor.setPower(0.0);
 				
-		telemetry.addData("Path", "Complete");
-		telemetry.update();
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
             }
         }
     }
