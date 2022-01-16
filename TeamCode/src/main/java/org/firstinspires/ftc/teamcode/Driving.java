@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -15,13 +17,16 @@ import com.acmerobotics.dashboard.config.Config;
 public class Driving extends LinearOpMode {
 
     // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
 
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor armMotor;
     DcMotor flippyMotor;
     Servo carasouelServo;
+
+    boolean secondHalf = false;                 // Use to prevent multiple half-time warning rumbles.
+    final double endGameTime = 110.0;              // Wait this many seconds before rumble-alert for half-time.
 
     @Override public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -44,8 +49,8 @@ public class Driving extends LinearOpMode {
 
         //waiting for time to start
         waitForStart();
-
         runtime.reset();
+
         while (opModeIsActive()) {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
@@ -53,20 +58,6 @@ public class Driving extends LinearOpMode {
             //TANK MODE FOR DRIVING
             rightMotor.setPower(-gamepad1.left_stick_y);
             leftMotor.setPower(-gamepad1.right_stick_y);
-
-           /*
-           int speedChange()
-           double speed = 0.5;
-
-           if (gamepad1.y) {
-               speed += 0.1;
-               rightMotor.setPower(speed);
-               leftMotor.setPower(speed);
-           } else if (gamepad1.a) {
-               speed -= 0.1;
-               rightMotor.setPower(speed);
-               leftMotor.setPower(speed);
-           }*/
 
             //CODE FOR ARM
             armMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -89,6 +80,10 @@ public class Driving extends LinearOpMode {
                 carasouelServo.setPosition(0.5);
             }
 
+            // Display the time remaining while we are still counting down.
+            if (!secondHalf) {
+                telemetry.addData("ALERT", "ENDGAME: %3.0f Seconds Left Till Endgame \n", (Math.round(endGameTime - runtime.seconds())) );
+            }
         }
     }
 }
