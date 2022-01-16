@@ -31,7 +31,7 @@ public class Automatic_1 extends LinearOpMode {
     SkystoneDeterminationPipeline pipeline;
     static double elementPosition;
 
-    //Encoder variables
+    // Encoder variables
     private final ElapsedTime runtime = new ElapsedTime();
     static final double COUNTS_PER_MOTOR_REV    = 1440;
     static final double DRIVE_GEAR_REDUCTION    = 2.0;
@@ -41,7 +41,7 @@ public class Automatic_1 extends LinearOpMode {
     static final double TURN_SPEED              = 0.3;
     static final double LIFT_SPEED		        = -0.2;
     
-    //Motor variables
+    // Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor armMotor;
@@ -49,9 +49,8 @@ public class Automatic_1 extends LinearOpMode {
     DcMotor flippyMotor;
 
     @Override
-    public void runOpMode()
-    {
-        //initializing all camera elements
+    public void runOpMode() {
+        // initializing all camera elements
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -66,7 +65,7 @@ public class Automatic_1 extends LinearOpMode {
             }
         });
         
-        //initializing all motor elements
+        // initializing all motor elements
         leftMotor = hardwareMap.dcMotor.get("Left_Motor"); 
         rightMotor = hardwareMap.dcMotor.get("Right_Motor");
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -76,7 +75,7 @@ public class Automatic_1 extends LinearOpMode {
         armMotor = hardwareMap.dcMotor.get("Arm_Motor");
         //initializing end effector
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
-        //initializing carousel
+        // initializing carousel
         carasouelServo = hardwareMap.servo.get("Carasouel_Servo");
         carasouelServo.setPosition(0.5);
         carasouelServo.setDirection(Servo.Direction.REVERSE);
@@ -103,15 +102,15 @@ public class Automatic_1 extends LinearOpMode {
             
             // ENCODERS
             if (elementPosition == 1) /* LEFT - highest level */ {
-                //turns and moves towards carasouel
+                // turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arm then end effector
+                // lifts arm then end effector
                 ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
-                //turns and moves to warehouse
+                // turns and moves to warehouse
                 encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);
@@ -122,15 +121,15 @@ public class Automatic_1 extends LinearOpMode {
                 telemetry.update();
 					
             } else if (elementPosition == 2) /* CENTER */ {
-                //turns and moves towards carasouel
+                // turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arm then end effector
+                // lifts arm then end effector
                 ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
-                //turns and moves to warehouse
+                // turns and moves to warehouse
                 encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);
@@ -141,15 +140,15 @@ public class Automatic_1 extends LinearOpMode {
                 telemetry.update();
 
             } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-                //turns and moves towards carasouel
+                // turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arm then end effector
+                // lifts arm then end effector
                 ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
-                //turns and moves to warehouse
+                // turns and moves to warehouse
                 encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);

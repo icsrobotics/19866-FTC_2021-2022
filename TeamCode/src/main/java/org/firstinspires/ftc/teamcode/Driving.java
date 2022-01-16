@@ -22,6 +22,7 @@ public class Driving extends LinearOpMode {
     // Declare OpMode members.
     private final ElapsedTime runtime = new ElapsedTime();
 
+    // Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor armMotor;
@@ -85,24 +86,31 @@ public class Driving extends LinearOpMode {
 
             //CODE FOR END EFFECTOR
             flippyMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
             if (gamepad2.a) {
                 flippyMotor.setPower(1.0);
+
             } else if(gamepad2.y){
                 flippyMotor.setPower(-1.0);
+
             } else if (gamepad2.b) {
                 flippyMotor.setPower(0);
+
             }
 
             // CODE FOR SERVO
             if (gamepad2.x) {
                 carasouelServo.setPosition(1);
+
             } else {
                 carasouelServo.setPosition(0.5);
+
             }
 
             // Display the time remaining while we are still counting down.
             if (!secondHalf) {
-                telemetry.addData("ALERT", "ENDGAME: %3.0f Seconds Left Till Endgame \n", (Math.round(endGameTime - runtime.seconds())) );
+                telemetry.addData("ALERT", "ENDGAME: %3.0f Seconds Left Till Endgame \n",
+                        (Math.round(endGameTime - runtime.seconds())) );
             }
         }
     }
