@@ -46,7 +46,7 @@ public class Automatic_2 extends LinearOpMode
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor armMotor;
-    Servo carasouelServo;
+    Servo   carasouelServo;
     DcMotor flippyMotor;
 
     @Override
@@ -95,8 +95,7 @@ public class Automatic_2 extends LinearOpMode
         waitForStart();
 
         // AUTONOMOUS
-        while (opModeIsActive())
-        {
+        while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.update();
 
@@ -109,11 +108,9 @@ public class Automatic_2 extends LinearOpMode
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arms for 2 seconds then end effector
-                armMotor.setPower(-LIFT_SPEED);
-                sleep(2000);
+                //lifts arm then end effector
+                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(2000);
                 flippyMotor.setPower(-0.5);
-                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -131,11 +128,9 @@ public class Automatic_2 extends LinearOpMode
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arms for 1.5 seconds then end effector
-                armMotor.setPower(-LIFT_SPEED);
-                sleep(1500);
+                //lifts arm then end effector
+                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(1500);
                 flippyMotor.setPower(-0.5);
-                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -153,11 +148,9 @@ public class Automatic_2 extends LinearOpMode
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
-                //lifts arms for 0.5 seconds then end effector
-                armMotor.setPower(-LIFT_SPEED);
-                sleep(500);
+                //lifts arm then end effector
+                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(500);
                 flippyMotor.setPower(-0.5);
-                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -390,4 +383,26 @@ public class Automatic_2 extends LinearOpMode
         }
     }
 
+    public void ArmLift(double speed, double armInches) {
+        int newArmTarget;
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newArmTarget = armMotor.getCurrentPosition() + (int)(armInches);
+            armMotor.setTargetPosition(newArmTarget);
+
+            // Turn On RUN_TO_POSITION
+            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            armMotor.setPower(Math.abs(speed));
+
+            // Stop all motion;
+            armMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
 }
