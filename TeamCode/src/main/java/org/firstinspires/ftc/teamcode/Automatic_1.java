@@ -104,7 +104,7 @@ public class Automatic_1 extends LinearOpMode
             sleep(50);
             
             // ENCODERS
-            if (elementPosition == 1) /* RIGHT - highest level */ {
+            if (elementPosition == 1) /* LEFT - highest level */ {
                 //turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
@@ -148,7 +148,7 @@ public class Automatic_1 extends LinearOpMode
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
 
-            } else if (elementPosition == 3) /* LEFT - lowest level */ {
+            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
                 //turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
