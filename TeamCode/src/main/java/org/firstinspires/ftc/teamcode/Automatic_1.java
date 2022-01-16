@@ -25,8 +25,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 @Autonomous(name = "Autonomous (Near Carousel)", group = "Linear Opmode")
-public class Automatic_1 extends LinearOpMode
-{
+public class Automatic_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;           
     SkystoneDeterminationPipeline pipeline;
