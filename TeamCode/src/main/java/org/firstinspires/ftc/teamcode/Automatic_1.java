@@ -109,8 +109,7 @@ public class Automatic_1 extends LinearOpMode
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 //lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(2000);
-                flippyMotor.setPower(-0.5);
+                ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -129,8 +128,7 @@ public class Automatic_1 extends LinearOpMode
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 //lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(1500);
-                flippyMotor.setPower(-0.5);
+                ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -149,8 +147,7 @@ public class Automatic_1 extends LinearOpMode
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 //lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10); //armMotor.setPower(-LIFT_SPEED);, armMotor.setPower(0.0);, sleep(500);
-                flippyMotor.setPower(-0.5);
+                ArmLift(LIFT_SPEED, 10);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 //turns and moves to warehouse
@@ -397,6 +394,7 @@ public class Automatic_1 extends LinearOpMode
             // reset the timeout time and start motion.
             runtime.reset();
             armMotor.setPower(Math.abs(speed));
+            flippyMotor.setPower(-0.5);
 
             // Stop all motion;
             armMotor.setPower(0);
