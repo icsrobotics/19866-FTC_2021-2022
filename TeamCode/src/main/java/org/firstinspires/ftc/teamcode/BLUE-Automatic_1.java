@@ -23,10 +23,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-
 @Config
-@Autonomous(name = "Color Detect", group = "Linear Opmode")
-public class ColorDetect extends LinearOpMode
+@Autonomous(name = "Autonmous On Blue Side (Near Carasouel)", group = "Linear Opmode")
+public class BLUE-Automatic_1 extends LinearOpMode
 {
     // Camera variables
     private OpenCvCamera webcam;           
@@ -128,25 +127,7 @@ public class ColorDetect extends LinearOpMode
                 armMotor.setPower(0.0);
 				
                 telemetry.addData("Path", "Complete");
-                telemetry.update();
-		
-            } else if (elementPosition == 3) {
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turn to the left
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-                armMotor.setPower(-0.2);
-                sleep(500);
-                flippyMotor.setPower(-0.5);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-                armMotor.setPower(0.0);
 
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5); // moves forwards
-                armMotor.setPower(0.0);
-				
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-            }
         }
     }
 
@@ -291,7 +272,7 @@ public class ColorDetect extends LinearOpMode
              */
             if(max == avg1) // Was it from region 1?
             {
-                elementPosition = 1; // for use in the encoders, left
+                elementPosition = 1; // for use in the encoders, LEFT
                 position = SkystonePosition.LEFT; // Record our analysis
 
                 //overlays a green rectangle
@@ -304,7 +285,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg2) // Was it from region 2?
             {
-                elementPosition = 2; //center
+                elementPosition = 2; //CENTER
                 position = SkystonePosition.CENTER; // Record our analysis
                 
                 // overlays a green rectangle
@@ -317,7 +298,7 @@ public class ColorDetect extends LinearOpMode
             }
             else if(max == avg3) // Was it from region 3?
             {
-                elementPosition = 3; //right
+                elementPosition = 3; //RIGHT
                 position = SkystonePosition.RIGHT; // Record our analysis
                 
                 // overlays a green rectangle
