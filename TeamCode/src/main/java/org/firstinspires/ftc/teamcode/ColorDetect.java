@@ -84,7 +84,7 @@ public class ColorDetect extends LinearOpMode
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-	// Wait for the game to start (driver presses PLAY)
+	    // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         while (opModeIsActive())
