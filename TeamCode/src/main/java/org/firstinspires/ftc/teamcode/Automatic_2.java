@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonmous (Near Warehouse)", group = "Linear Opmode")
+@Autonomous(name = "Autonomous (Near Warehouse)", group = "Linear Opmode")
 public class Automatic_2 extends LinearOpMode
 {
     // Camera variables
@@ -33,13 +33,13 @@ public class Automatic_2 extends LinearOpMode
     static double elementPosition;
 
     //Encoder variables
-    private ElapsedTime runtime = new ElapsedTime();
-    static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
-    static final double DRIVE_GEAR_REDUCTION    = 20;     // This is < 1.0 if geared UP
-    static final double WHEEL_DIAMETER_INCHES   = 4.0;     // For figuring circumference
+    private final ElapsedTime runtime = new ElapsedTime();
+    static final double COUNTS_PER_MOTOR_REV    = 1440;
+    static final double DRIVE_GEAR_REDUCTION    = 20;
+    static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED             = 0.3;
-    static final double TURN_SPEED              = 0.5;
+    static final double DRIVE_SPEED             = 0.15;
+    static final double TURN_SPEED              = 0.3;
     static final double LIFT_SPEED		        = 0.2;
 
     //Motor variables
@@ -57,7 +57,15 @@ public class Automatic_2 extends LinearOpMode
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
-        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {@Override public void onOpened() {webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);} @Override public void onError(int errorCode) {}});
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+            @Override public void onOpened() {
+                webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);
+            }
+            @Override public void onError(int errorCode) {
+                telemetry.addData("Camera", "Unavailable");
+                telemetry.update();
+            }
+        });
 
         //initializing all motor elements
         leftMotor = hardwareMap.dcMotor.get("Left_Motor");
@@ -69,7 +77,7 @@ public class Automatic_2 extends LinearOpMode
         armMotor = hardwareMap.dcMotor.get("Arm_Motor");
         //initializing end effector
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
-        //initializing carasouel
+        //initializing carousel
         carasouelServo = hardwareMap.servo.get("Carasouel_Servo");
         carasouelServo.setPosition(0.5);
         carasouelServo.setDirection(Servo.Direction.REVERSE);
@@ -83,9 +91,10 @@ public class Automatic_2 extends LinearOpMode
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-        // Wait for the game to start (driver presses PLAY)
+	    // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        // AUTONOMOUS
         while (opModeIsActive())
         {
             telemetry.addData("Analysis", pipeline.getAnalysis());
@@ -94,66 +103,75 @@ public class Automatic_2 extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
 
-            //AUTONOMOUS
-            if (elementPosition == 1) {
+            // ENCODERS
+            if (elementPosition == 1) /* RIGHT - highest level */{
                 //turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
-                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+
                 //lifts arms for 2 seconds then end effector
-                armMotor.setPower(-0.2);
+                armMotor.setPower(-LIFT_SPEED);
                 sleep(2000);
                 flippyMotor.setPower(-0.5);
                 armMotor.setPower(0.0);
-                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+
                 //turns and moves to warehouse
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns left
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);
                 armMotor.setPower(0.0);
 
+                // Path Complete
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
 
-            } else if (elementPosition == 2) {
+            } else if (elementPosition == 2) /* CENTER */ {
                 //turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
-                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+
                 //lifts arms for 1.5 seconds then end effector
-                armMotor.setPower(-0.2);
+                armMotor.setPower(-LIFT_SPEED);
                 sleep(1500);
                 flippyMotor.setPower(-0.5);
                 armMotor.setPower(0.0);
-                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+
                 //turns and moves to warehouse
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);
                 armMotor.setPower(0.0);
 
+                // Path Complete
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
 
-            } else if (elementPosition == 3) {
+            } else if (elementPosition == 3) /* LEFT - lowest level */ {
                 //turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
-                encoderDrive(0.15, 0.5, 0.5, 0.2);
+                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns right
+                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+
                 //lifts arms for 0.5 seconds then end effector
-                armMotor.setPower(-0.2);
+                armMotor.setPower(-LIFT_SPEED);
                 sleep(500);
                 flippyMotor.setPower(-0.5);
                 armMotor.setPower(0.0);
-                encoderDrive(0.15, -0.5, -0.5, 0.2);
+                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+
                 //turns and moves to warehouse
-                encoderDrive(0.3, -0.75, 0.75, 1.15); // turns right
+                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
                 armMotor.setPower(-0.5);
                 encoderDrive(1, 5, 5, 2.5);
                 armMotor.setPower(0.0);
 
+                // Path Complete
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
 
             } else {
-                telemetry.addData("Shipping Element", "Unavaliable");
+                telemetry.addData("Shipping Element", "Unavailable");
                 telemetry.update();
             }
         }
@@ -173,9 +191,8 @@ public class Automatic_2 extends LinearOpMode
         /*
          * Some color constants
          */
-        static final Scalar BLUE = new Scalar(0, 0, 255);
         static final Scalar GREEN = new Scalar(0, 255, 0);
-        static final Scalar RED = new Scalar(255, 0, 0);
+        static final Scalar WHITE = new Scalar(255, 255, 255);
 
         /*
          * The core values which define the location and size of the sample regions
@@ -229,22 +246,8 @@ public class Automatic_2 extends LinearOpMode
         @Override
         public void init(Mat firstFrame)
         {
-            /*
-             * We need to call this in order to make sure the 'Cb'
-             * object is initialized, so that the submats we make
-             * will still be linked to it on subsequent frames. (If
-             * the object were to only be initialized in processFrame,
-             * then the submats would become delinked because the backing
-             * buffer would be re-allocated the first time a real frame
-             * was crunched)
-             */
             inputToCb(firstFrame);
 
-            /*
-             * Submats are a persistent reference to a region of the parent
-             * buffer. Any changes to the child affect the parent, and the
-             * reverse also holds true.
-             */
             region1_Cb = Cb.submat(new Rect(region1_pointA, region1_pointB));
             region2_Cb = Cb.submat(new Rect(region2_pointA, region2_pointB));
             region3_Cb = Cb.submat(new Rect(region3_pointA, region3_pointB));
@@ -268,7 +271,7 @@ public class Automatic_2 extends LinearOpMode
                     input, // Buffer to draw on
                     region1_pointA, // First point which defines the rectangle
                     region1_pointB, // Second point which defines the rectangle
-                    RED, // The color the rectangle is drawn in
+                    WHITE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
             // region 2
@@ -276,7 +279,7 @@ public class Automatic_2 extends LinearOpMode
                     input, // Buffer to draw on
                     region2_pointA, // First point which defines the rectangle
                     region2_pointB, // Second point which defines the rectangle
-                    RED, // The color the rectangle is drawn in
+                    WHITE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
             // region 3
@@ -284,7 +287,7 @@ public class Automatic_2 extends LinearOpMode
                     input, // Buffer to draw on
                     region3_pointA, // First point which defines the rectangle
                     region3_pointB, // Second point which defines the rectangle
-                    RED, // The color the rectangle is drawn in
+                    WHITE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
 
