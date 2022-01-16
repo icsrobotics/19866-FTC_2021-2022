@@ -24,11 +24,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonmous For Blue Side (Near Carasouel)", group = "Linear Opmode")
-public class BLUE-Automatic_1 extends LinearOpMode
+@Autonomous(name = "Autonmous (Near Warehouse)", group = "Linear Opmode")
+public class Automatic_2 extends LinearOpMode
 {
     // Camera variables
-    private OpenCvCamera webcam;           
+    private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
     static double elementPosition;
 
@@ -41,7 +41,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
     static final double LIFT_SPEED		        = 0.2;
-    
+
     //Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
@@ -58,9 +58,9 @@ public class BLUE-Automatic_1 extends LinearOpMode
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {@Override public void onOpened() {webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);} @Override public void onError(int errorCode) {}});
-        
+
         //initializing all motor elements
-        leftMotor = hardwareMap.dcMotor.get("Left_Motor"); 
+        leftMotor = hardwareMap.dcMotor.get("Left_Motor");
         rightMotor = hardwareMap.dcMotor.get("Right_Motor");
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -70,7 +70,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
         //initializing end effector
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
         //initializing carasouel
-        carasouelServo = hardwareMap.servo.get("Carasouel_Servo"); 
+        carasouelServo = hardwareMap.servo.get("Carasouel_Servo");
         carasouelServo.setPosition(0.5);
         carasouelServo.setDirection(Servo.Direction.REVERSE);
 
@@ -83,7 +83,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-	    // Wait for the game to start (driver presses PLAY)
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         while (opModeIsActive())
@@ -93,7 +93,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
-            
+
             //AUTONOMOUS
             if (elementPosition == 1) {
                 //turns and moves towards carasouel
@@ -113,7 +113,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
 
                 telemetry.addData("Path", "Complete");
                 telemetry.update();
-					
+
             } else if (elementPosition == 2) {
                 //turns and moves towards carasouel
                 encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
@@ -180,10 +180,10 @@ public class BLUE-Automatic_1 extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250); 
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250); 
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(450,250); 
-        static final int REGION_WIDTH = 100; 
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250);
+        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250);
+        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(450,250);
+        static final int REGION_WIDTH = 100;
         static final int REGION_HEIGHT = 100;
 
         Point region1_pointA = new Point(
@@ -262,7 +262,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
             /*
              * The following rectangles are simply visual aid. They serve no functional purpose.
              */
-             
+
             //region 1
             Imgproc.rectangle(
                     input, // Buffer to draw on
@@ -315,7 +315,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
             {
                 elementPosition = 2; //CENTER
                 position = SkystonePosition.CENTER; // Record our analysis
-                
+
                 // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
@@ -328,7 +328,7 @@ public class BLUE-Automatic_1 extends LinearOpMode
             {
                 elementPosition = 3; //RIGHT
                 position = SkystonePosition.RIGHT; // Record our analysis
-                
+
                 // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
