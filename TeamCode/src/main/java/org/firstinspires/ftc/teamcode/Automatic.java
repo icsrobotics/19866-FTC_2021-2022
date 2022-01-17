@@ -12,7 +12,6 @@ import com.acmerobotics.dashboard.config.Config;
 
 @Config
 @Autonomous(name="Automatic", group="Linear Opmode")
-@Disabled
 public class Automatic extends LinearOpMode {
 
     /* Declare OpMode members. */
