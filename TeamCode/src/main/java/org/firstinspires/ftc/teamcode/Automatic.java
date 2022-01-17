@@ -68,7 +68,6 @@ public class Automatic extends LinearOpMode {
         carasouelServo.setPosition(1.0);
         encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
         encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
-        //encoderDrive(0.3,-4.5, -4.5, 1.5); // move backwards
         encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
         encoderDrive(0.2, -1, -1, 0.5);
         encoderDrive(0.1, -0.5,-0.5,0.5);
@@ -78,7 +77,7 @@ public class Automatic extends LinearOpMode {
         encoderDrive(0.3, 1.0, 1.0, 1.0); // moves forwards
         encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
         armMotor.setPower(-0.5);
-        encoderDrive(1, 10, 10, 2.5); // moves forwards
+        encoderDrive(0.5, 10, 10, 2.5); // moves forwards
         armMotor.setPower(0.0);
         telemetry.addData("Path", "Complete");
         telemetry.update();
