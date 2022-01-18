@@ -11,7 +11,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 
 @Config
-@Autonomous(name="Automatic", group="Linear Opmode")
+@Autonomous(name = "Automatic", group = "Linear Opmode")
 public class Automatic extends LinearOpMode {
 
     /* Declare OpMode members. */
