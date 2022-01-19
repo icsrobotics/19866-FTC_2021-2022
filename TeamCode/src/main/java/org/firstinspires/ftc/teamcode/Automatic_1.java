@@ -102,62 +102,14 @@ public class Automatic_1 extends LinearOpMode {
             
             // ENCODERS
             if (elementPosition == 1) /* LEFT - highest level */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
+  				break;
 					
             } else if (elementPosition == 2) /* CENTER */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
+				break;
 
             } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
+		    
+				break;
             } else {
                 telemetry.addData("Shipping Element", "Unavailable");
                 telemetry.update();
@@ -377,28 +329,5 @@ public class Automatic_1 extends LinearOpMode {
             rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-
-    public void ArmLift(double speed, double armInches) {
-        int newArmTarget;
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-            // Determine new target position, and pass to motor controller
-            newArmTarget = armMotor.getCurrentPosition() + (int)(armInches);
-            armMotor.setTargetPosition(newArmTarget);
-
-            // Turn On RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            armMotor.setPower(Math.abs(speed));
-            flippyMotor.setPower(-0.5);
-
-            // Stop all motion;
-            armMotor.setPower(0);
-
-            // Turn off RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
+  }
 }
