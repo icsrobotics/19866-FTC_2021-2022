@@ -29,12 +29,6 @@ public class Driving extends LinearOpMode {
     DcMotor flippyMotor;
     Servo carasouelServo;
 
-    boolean secondHalf = false;                 // Use to prevent multiple half-time warning rumbles.
-    final double endGameTime = 110.0;              // Wait this many seconds before rumble-alert for half-time.
-
-    // Camera variables
-    private OpenCvCamera webcam;
-
     @Override public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -53,20 +47,6 @@ public class Driving extends LinearOpMode {
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = dashboard.getTelemetry();
-        FtcDashboard.getInstance().startCameraStream(webcam, 10);
-
-        //initializing all camera elements
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-            @Override public void onOpened() {
-                webcam.startStreaming(640,480, OpenCvCameraRotation.UPRIGHT);
-            }
-            @Override public void onError(int errorCode) {
-                telemetry.addData("Camera", "Unavailable");
-                telemetry.update();
-            }
-        });
 
         //waiting for time to start
         waitForStart();
@@ -105,12 +85,6 @@ public class Driving extends LinearOpMode {
             } else {
                 carasouelServo.setPosition(0.5);
 
-            }
-
-            // Display the time remaining while we are still counting down.
-            if (!secondHalf) {
-                telemetry.addData("ALERT", "ENDGAME: %3.0f Seconds Left Till Endgame \n",
-                        (Math.round(endGameTime - runtime.seconds())) );
             }
         }
     }
