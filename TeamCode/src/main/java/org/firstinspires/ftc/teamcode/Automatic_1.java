@@ -37,9 +37,6 @@ public class Automatic_1 extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION    = 2.0;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED             = 0.15;
-    static final double TURN_SPEED              = 0.3;
-
     // Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
@@ -102,81 +99,84 @@ public class Automatic_1 extends LinearOpMode {
             sleep(50);
             
             // ENCODERS
-            if (elementPosition == 1) /* LEFT - highest level */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                armMotor.setPower(0.5);
-                sleep(3000);
-                flippyMotor.setPower(0.5);
-                sleep(500);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(0.0);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-					
-            } else if (elementPosition == 2) /* CENTER */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                armMotor.setPower(0.5);
-                sleep(2750);
-                flippyMotor.setPower(0.5);
-                sleep(500);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(0.0);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
-            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                armMotor.setPower(0.5);
-                sleep(2000);
-                flippyMotor.setPower(0.5);
-                sleep(500);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(0.0);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
-            } else {
-                telemetry.addData("Shipping Element", "Unavailable");
-                telemetry.update();
+//            if (elementPosition == 1) /* LEFT - highest level */ {
+//                // turns and moves towards carasouel
+//                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
+//                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+//
+//                // lifts arm then end effector
+//                armMotor.setPower(0.5);
+//                sleep(3000);
+//                flippyMotor.setPower(0.5);
+//                sleep(500);
+//                flippyMotor.setPower(0.0);
+//                armMotor.setPower(0.0);
+//                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+//
+//                // turns and moves to warehouse
+//                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
+//                armMotor.setPower(-0.5);
+//                encoderDrive(1, 5, 5, 2.5);
+//                armMotor.setPower(0.0);
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//
+//            } else if (elementPosition == 2) /* CENTER */ {
+//                // turns and moves towards carasouel
+//                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
+//                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+//
+//                // lifts arm then end effector
+//                armMotor.setPower(0.5);
+//                sleep(2750);
+//                flippyMotor.setPower(0.5);
+//                sleep(500);
+//                flippyMotor.setPower(0.0);
+//                armMotor.setPower(0.0);
+//                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+//
+//                // turns and moves to warehouse
+//                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
+//                armMotor.setPower(-0.5);
+//                encoderDrive(1, 5, 5, 2.5);
+//                armMotor.setPower(0.0);
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//
+//            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
+//                // turns and moves towards carasouel
+//                encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turns right
+//                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
+//
+//                // lifts arm then end effector
+//                armMotor.setPower(0.5);
+//                sleep(2000);
+//                flippyMotor.setPower(0.5);
+//                sleep(500);
+//                flippyMotor.setPower(0.0);
+//                armMotor.setPower(0.0);
+//                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
+//
+//                // turns and moves to warehouse
+//                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
+//                armMotor.setPower(-0.5);
+//                encoderDrive(1, 5, 5, 2.5);
+//                armMotor.setPower(0.0);
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//
+//            } else {
+//                telemetry.addData("Shipping Element", "Unavailable");
+//                telemetry.update();
+//            }
+            if (elementPosition < 5) {
+                encoderDrive(0.5, 10, 10, 5.0);
             }
         }
     }
