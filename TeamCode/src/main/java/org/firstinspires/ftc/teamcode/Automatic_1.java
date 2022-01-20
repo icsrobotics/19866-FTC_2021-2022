@@ -39,8 +39,7 @@ public class Automatic_1 extends LinearOpMode {
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED             = 0.15;
     static final double TURN_SPEED              = 0.3;
-    static final double LIFT_SPEED		        = -0.2;
-    
+
     // Motor variables
     DcMotor leftMotor;
     DcMotor rightMotor;
@@ -71,6 +70,8 @@ public class Automatic_1 extends LinearOpMode {
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // initializing arm motor
         armMotor = hardwareMap.dcMotor.get("Arm_Motor");
         //initializing end effector
@@ -107,7 +108,12 @@ public class Automatic_1 extends LinearOpMode {
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
+                armMotor.setPower(0.5);
+                sleep(3000);
+                flippyMotor.setPower(0.5);
+                sleep(500);
+                flippyMotor.setPower(0.0);
+                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 // turns and moves to warehouse
@@ -126,7 +132,12 @@ public class Automatic_1 extends LinearOpMode {
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
+                armMotor.setPower(0.5);
+                sleep(2750);
+                flippyMotor.setPower(0.5);
+                sleep(500);
+                flippyMotor.setPower(0.0);
+                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 // turns and moves to warehouse
@@ -145,7 +156,12 @@ public class Automatic_1 extends LinearOpMode {
                 encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
 
                 // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
+                armMotor.setPower(0.5);
+                sleep(2000);
+                flippyMotor.setPower(0.5);
+                sleep(500);
+                flippyMotor.setPower(0.0);
+                armMotor.setPower(0.0);
                 encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
 
                 // turns and moves to warehouse
@@ -360,7 +376,7 @@ public class Automatic_1 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
             rightMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() && rightMotor.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() || rightMotor.isBusy())) {
                 // Display it for the driver.
                 telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
                 telemetry.addData("Path2",  "Running at %7d :%7d",
@@ -375,30 +391,6 @@ public class Automatic_1 extends LinearOpMode {
             // Turn off RUN_TO_POSITION
             leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
-
-    public void ArmLift(double speed, double armInches) {
-        int newArmTarget;
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-            // Determine new target position, and pass to motor controller
-            newArmTarget = armMotor.getCurrentPosition() + (int)(armInches);
-            armMotor.setTargetPosition(newArmTarget);
-
-            // Turn On RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            armMotor.setPower(Math.abs(speed));
-            flippyMotor.setPower(-0.5);
-
-            // Stop all motion;
-            armMotor.setPower(0);
-
-            // Turn off RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 }
