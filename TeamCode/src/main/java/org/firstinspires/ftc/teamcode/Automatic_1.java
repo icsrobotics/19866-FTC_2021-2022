@@ -37,7 +37,8 @@ public class Automatic_1 extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION    = 2.0;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double ARM_COUNTS_PER_INCH     = COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION * 10;
+
+    static final double ARM_COUNTS_PER_INCH     = 288;
 
     // Motor variables
     DcMotor leftMotor;
