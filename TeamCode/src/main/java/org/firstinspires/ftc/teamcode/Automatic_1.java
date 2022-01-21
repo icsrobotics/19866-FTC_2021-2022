@@ -37,7 +37,7 @@ public class Automatic_1 extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION    = 2.0;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double ARM_COUNTS_PER_INCH     = COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION * 0.5;
+    static final double ARM_COUNTS_PER_INCH     = COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION * 10;
 
     // Motor variables
     DcMotor leftMotor;
@@ -49,7 +49,8 @@ public class Automatic_1 extends LinearOpMode {
     @Override
     public void runOpMode() {
         // initializing all camera elements
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
@@ -109,8 +110,7 @@ public class Automatic_1 extends LinearOpMode {
                 JustRight(0.5, 10, 1.0);
 
                 // Lift arm
-                ArmLift(0.5, 20, 2.0);
-                flippyMotor.setPower(0.5);
+                ArmLift(0.5, 30, 3.0);
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -123,7 +123,6 @@ public class Automatic_1 extends LinearOpMode {
 
                 // Lift arm
                 ArmLift(0.5, 20, 2.0);
-                flippyMotor.setPower(0.5);
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -135,8 +134,7 @@ public class Automatic_1 extends LinearOpMode {
                 JustRight(0.5, 10, 1.0);
 
                 // Lift arm
-                ArmLift(0.5, 20, 2.0);
-                flippyMotor.setPower(0.5);
+                ArmLift(0.5, 10, 1.0);
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -144,17 +142,9 @@ public class Automatic_1 extends LinearOpMode {
                 break;
 
             } else {
-                telemetry.addData("Shipping Element", "Unavailable");
+                telemetry.addData("Shipping Element", "Unavailable uwu");
                 telemetry.update();
             }
-/*
-            if (elementPosition < 5) {
-                encoderDrive(0.5, 5, 5, 0.5);
-                JustLeft(0.5,5, 0.5);
-                JustRight(0.5,5, 0.5);
-                break;
-            }
-*/
         }
     }
 
@@ -333,7 +323,7 @@ public class Automatic_1 extends LinearOpMode {
         }
     }
 
-    public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
+    public void encoderDrive(double speed, double leftInches, double rightInches, double timeout) {
         int newLeftTarget;
         int newRightTarget;
         // Ensure that the opmode is still active
@@ -353,7 +343,7 @@ public class Automatic_1 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
             rightMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
                 // Display it for the driver.
                 telemetry.addData("Original Path",  "Running to %7d : %7d", newLeftTarget, newRightTarget);
                 telemetry.addData("Running Now",  "Running at %7d :%7d",
@@ -371,7 +361,7 @@ public class Automatic_1 extends LinearOpMode {
         }
     }
 
-    public void JustRight(double speed, double Inches, double timeoutS) {
+    public void JustRight(double speed, double Inches, double timeout) {
         int newTarget;
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -386,7 +376,7 @@ public class Automatic_1 extends LinearOpMode {
             runtime.reset();
             leftMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
                 telemetry.addData("From ICS Robotics", "JUST LEFT!!");
                 telemetry.update();
             }
@@ -398,7 +388,7 @@ public class Automatic_1 extends LinearOpMode {
         }
     }
 
-    public void JustLeft(double speed, double Inches, double timeoutS) {
+    public void JustLeft(double speed, double Inches, double timeout) {
         int newTarget;
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -413,7 +403,7 @@ public class Automatic_1 extends LinearOpMode {
             runtime.reset();
             rightMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
                 telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
                 telemetry.update();
             }
@@ -425,7 +415,7 @@ public class Automatic_1 extends LinearOpMode {
         }
     }
 
-    public void ArmLift(double speed, double Inches, double timeoutS) {
+    public void ArmLift(double speed, double Inches, double timeout) {
         int newTarget;
 
         // Ensure that the opmode is still active
@@ -442,13 +432,15 @@ public class Automatic_1 extends LinearOpMode {
             runtime.reset();
             armMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && armMotor.isBusy()) {
+            while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
                 telemetry.addData("Original Path",  "Running to %7d", newTarget);
                 telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
                 telemetry.update();
             }
-            // Stop all motion;
+            // Stop all motion and do flippy motor
+            flippyMotor.setPower(0.5);
+            sleep(500);
             armMotor.setPower(0);
 
             // Turn off RUN_TO_POSITION
