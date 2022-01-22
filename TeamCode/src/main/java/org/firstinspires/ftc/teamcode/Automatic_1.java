@@ -73,11 +73,14 @@ public class Automatic_1 extends LinearOpMode {
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         // initializing arm motor
         armMotor = hardwareMap.dcMotor.get("Arm_Motor");
         armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //initializing end effector
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
         // initializing carousel
@@ -108,9 +111,12 @@ public class Automatic_1 extends LinearOpMode {
             //ENCODERS
             if (elementPosition == 1) /* LEFT - highest level */ {
                 // turn to shipping hub
-                encoderDrive(0.5, 1,1, 1.0);
+                encoderDrive(0.5, -1,1, 1.0);
+                encoderDrive(0.5, 1, 1, 1.0);
+
                 // Lift arm
                 ArmLift(0.3, 20, 2.0);
+
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -424,13 +430,9 @@ public class Automatic_1 extends LinearOpMode {
             newTarget = armMotor.getCurrentPosition() + (int)(Inches * ARM_COUNTS_PER_INCH);
             armMotor.setTargetPosition(newTarget);
 
-
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            armMotor.setPower(Math.abs(speed));
+            armMotor.setPower(speed);
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
@@ -444,7 +446,7 @@ public class Automatic_1 extends LinearOpMode {
             armMotor.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
 
