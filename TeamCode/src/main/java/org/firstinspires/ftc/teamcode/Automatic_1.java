@@ -441,7 +441,6 @@ public class Automatic_1 extends LinearOpMode {
                 telemetry.update();
             }
             // Stop all motion and do flippy motor
-            flippyMotor.setPower(0.5);
             sleep(700);
             armMotor.setPower(0);
 
