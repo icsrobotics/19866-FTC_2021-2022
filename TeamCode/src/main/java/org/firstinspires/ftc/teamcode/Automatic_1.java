@@ -108,10 +108,9 @@ public class Automatic_1 extends LinearOpMode {
             //ENCODERS
             if (elementPosition == 1) /* LEFT - highest level */ {
                 // turn to shipping hub
-                JustRight(0.5, 10, 1.0);
-
+                encoderDrive(0.5, );
                 // Lift arm
-                ArmLift(0.5, 30, 3.0);
+                ArmLift(0.3, 20, 2.0);
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -123,7 +122,7 @@ public class Automatic_1 extends LinearOpMode {
                 JustRight(0.5, 10, 1.0);
 
                 // Lift arm
-                ArmLift(0.5, 20, 2.0);
+                ArmLift(0.5, 20, 1.0);
 
                 // Path Complete
                 telemetry.addData("Path", "Complete");
@@ -441,7 +440,7 @@ public class Automatic_1 extends LinearOpMode {
             }
             // Stop all motion and do flippy motor
             flippyMotor.setPower(0.5);
-            sleep(500);
+            sleep(700);
             armMotor.setPower(0);
 
             // Turn off RUN_TO_POSITION
