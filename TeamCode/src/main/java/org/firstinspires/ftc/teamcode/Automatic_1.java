@@ -108,7 +108,7 @@ public class Automatic_1 extends LinearOpMode {
             //ENCODERS
             if (elementPosition == 1) /* LEFT - highest level */ {
                 // turn to shipping hub
-                encoderDrive(0.5, );
+                encoderDrive(0.5, 1,1, 1.0);
                 // Lift arm
                 ArmLift(0.3, 20, 2.0);
 

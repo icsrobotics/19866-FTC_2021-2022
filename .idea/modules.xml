@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ftc_new.iml" filepath="$PROJECT_DIR$/.idea/modules/ftc_new.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/icsrobotics2021.ftc_new.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/icsrobotics2021.ftc_new.TeamCode.iml" />
     </modules>
   </component>
