@@ -38,7 +38,9 @@ public class Automatic_1 extends LinearOpMode {
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
 
-    static final double ARM_COUNTS_PER_INCH     = 288;
+    static final double ARM_DRIVE_GEAR_REDUCTION = 6;
+    static final double ARM_COUNTS_PER_MOTOR     = 288;
+    static final double ARM_COUNTS_PER_INCH      = ARM_DRIVE_GEAR_REDUCTION * ARM_COUNTS_PER_MOTOR;
 
     // Motor variables
     DcMotor leftMotor;
@@ -50,8 +52,7 @@ public class Automatic_1 extends LinearOpMode {
     @Override
     public void runOpMode() {
         // initializing all camera elements
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
@@ -99,8 +100,53 @@ public class Automatic_1 extends LinearOpMode {
 
 	    // Wait for the game to start (driver presses PLAY)
         waitForStart();
+//            if (elementPosition == 1) /* LEFT - highest level */ {
+//                // turn to shipping hub
+//                encoderDrive(0.5, -1,1, 1.0);
+//                encoderDrive(0.5, 5, 5, 1.5);
+//
+//                // Lift arm
+//                ArmLift(0.3, 20, 2.0);
+//
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//                break;
+//
+//            } else if (elementPosition == 2) /* CENTER */ {
+//                // turn to shipping hub
+//                JustRight(0.5, 10, 1.0);
+//
+//                // Lift arm
+//                ArmLift(0.5, 20, 1.0);
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//                break;
+//
+//            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
+//                // turn to shipping hub
+//                JustRight(0.5, 10, 1.0);
+//
+//                // Lift arm
+//                ArmLift(0.5, 10, 1.0);
+//
+//                // Path Complete
+//                telemetry.addData("Path", "Complete");
+//                telemetry.update();
+//                break;
+//
+//            } else {
+//                telemetry.addData("Shipping Element", "Unavailable uwu");
+//                telemetry.update();
+//            }
+// PLACE OF CHANGES
+        encoderDrive(0.5, 1, 1, 2.0);
+        ArmLift(0.5, 10, 2.0);
 
-        // AUTONOMOUS
+
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.update();
@@ -108,49 +154,6 @@ public class Automatic_1 extends LinearOpMode {
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
 
-            //ENCODERS
-            if (elementPosition == 1) /* LEFT - highest level */ {
-                // turn to shipping hub
-                encoderDrive(0.5, -1,1, 1.0);
-                encoderDrive(0.5, 1, 1, 1.0);
-
-                // Lift arm
-                ArmLift(0.3, 20, 2.0);
-
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-                break;
-
-            } else if (elementPosition == 2) /* CENTER */ {
-                // turn to shipping hub
-                JustRight(0.5, 10, 1.0);
-
-                // Lift arm
-                ArmLift(0.5, 20, 1.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-                break;
-
-            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-                // turn to shipping hub
-                JustRight(0.5, 10, 1.0);
-
-                // Lift arm
-                ArmLift(0.5, 10, 1.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-                break;
-
-            } else {
-                telemetry.addData("Shipping Element", "Unavailable uwu");
-                telemetry.update();
-            }
         }
     }
 
@@ -424,7 +427,7 @@ public class Automatic_1 extends LinearOpMode {
     public void ArmLift(double speed, double Inches, double timeout) {
         int newTarget;
 
-        // Ensure that the opmode is still active
+        // Ensure that the opmode is still active int()
         if (opModeIsActive()) {
             // Determine new target position, and pass to motor controller
             newTarget = armMotor.getCurrentPosition() + (int)(Inches * ARM_COUNTS_PER_INCH);
@@ -432,7 +435,7 @@ public class Automatic_1 extends LinearOpMode {
 
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(speed);
+            armMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
@@ -440,13 +443,18 @@ public class Automatic_1 extends LinearOpMode {
                 telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
                 telemetry.update();
             }
+
             // Stop all motion and do flippy motor
-            sleep(700);
-            armMotor.setPower(0);
+            sleep(2000);
+            flippyMotor.setPower(0.5);
+            sleep(1750);
+            flippyMotor.setPower(0.0);
+            armMotor.setPower(0.0);
 
             // Turn off RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            armMotor.setPower(0.0);
         }
     }
-
 }

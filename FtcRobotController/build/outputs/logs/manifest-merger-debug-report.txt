@@ -3,26 +3,18 @@ manifest
 ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
 INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
 INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
-INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
-INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
-INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
-INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:1-81:12
 	package
 		ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:4:11-52
 		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
 		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
 	android:versionName
 		ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:6:11-36
-		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
-		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:3:11-57
 	xmlns:android
 		ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
 		ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:5:11-35
-		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
-		INJECTED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from /home/icsrobotics2021/ftc_new/FtcRobotController/src/main/AndroidManifest.xml:8:3-79
 	android:name
