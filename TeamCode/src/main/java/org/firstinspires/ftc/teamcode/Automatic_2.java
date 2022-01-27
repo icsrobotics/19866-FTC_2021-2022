@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -26,7 +25,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 @Autonomous(name = "Autonomous (Near Warehouse)", group = "Linear Opmode")
-@Disabled
 public class Automatic_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
@@ -39,9 +37,10 @@ public class Automatic_2 extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION    = 2.0;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED             = 0.15;
-    static final double TURN_SPEED              = 0.3;
-    static final double LIFT_SPEED		        = 0.2;
+
+    static final double ARM_DRIVE_GEAR_REDUCTION = 6;
+    static final double ARM_COUNTS_PER_MOTOR     = 288;
+    static final double ARM_COUNTS_PER_INCH      = ARM_DRIVE_GEAR_REDUCTION * ARM_COUNTS_PER_MOTOR;
 
     // Motor variables
     DcMotor leftMotor;
@@ -53,8 +52,11 @@ public class Automatic_2 extends LinearOpMode {
     @Override
     public void runOpMode() {
         // initializing all camera elements
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "cameraMonitorViewId",
+                "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class,
+                "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -68,13 +70,21 @@ public class Automatic_2 extends LinearOpMode {
         });
 
         // initializing all motor elements
-        leftMotor = hardwareMap.dcMotor.get("Left_Motor");
-        rightMotor = hardwareMap.dcMotor.get("Right_Motor");
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor = hardwareMap.dcMotor.get("Right_Motor");
+        rightMotor = hardwareMap.dcMotor.get("Left_Motor");
+        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         // initializing arm motor
         armMotor = hardwareMap.dcMotor.get("Arm_Motor");
+        armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //initializing end effector
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor");
         // initializing carousel
@@ -91,10 +101,86 @@ public class Automatic_2 extends LinearOpMode {
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-	    // Wait for the game to start (driver presses PLAY)
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // AUTONOMOUS
+        if (elementPosition == 1) /* LEFT - highest level */ {
+            // go to carasouel
+            encoderDrive(0.5, -1, 1, 0.3);
+            encoderDrive(0.3, 5, 5, 0.5);
+
+            // lift arm
+            ArmLift(0.5, 10, 3.15);
+            sleep(50);
+            flippyMotor.setPower(0.5);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            encoderDrive(0.5, 1, -1, 0.3);
+            armMotor.setPower(-0.5);
+            encoderDrive(0.25, 10, 10, 1.5);
+            armMotor.setPower(0.0);
+
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
+
+            return;
+        } else if (elementPosition == 2) /* CENTER */ {
+            // go to carasouel
+            encoderDrive(0.5, -1, 1, 0.3);
+            encoderDrive(0.3, 5, 5, 0.5);
+
+            // lift arm
+            ArmLift(0.5, 10, 3.15);
+            sleep(50);
+            flippyMotor.setPower(0.5);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            encoderDrive(0.5, 1, -1, 0.3);
+            armMotor.setPower(-0.5);
+            encoderDrive(0.25, 10, 10, 1.5);
+            armMotor.setPower(0.0);
+
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
+
+            return;
+        } else if (elementPosition == 3) /* RIGHT - lowest level */ {
+            // go to carasouel
+            encoderDrive(0.5, -1, 1, 0.3);
+            encoderDrive(0.3, 5, 5, 0.5);
+
+            // lift arm
+            ArmLift(0.5, 10, 3.15);
+            sleep(50);
+            flippyMotor.setPower(0.5);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            encoderDrive(0.5, 1, -1, 0.3);
+            armMotor.setPower(-0.5);
+            encoderDrive(0.25, 10, 10, 1.5);
+            armMotor.setPower(0.0);
+
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
+
+            return;
+        } else {
+            telemetry.addData("Shipping Element", "Unavailable");
+            telemetry.update();
+        }
+
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.update();
@@ -102,68 +188,6 @@ public class Automatic_2 extends LinearOpMode {
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
 
-            // ENCODERS
-            if (elementPosition == 1) /* LEFT - highest level */{
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns left
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
-            } else if (elementPosition == 2) /* CENTER */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns left
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
-            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-                // turns and moves towards carasouel
-                encoderDrive(TURN_SPEED, -1.5,1.5,0.5); // turns right
-                encoderDrive(DRIVE_SPEED, 0.5, 0.5, 0.2);
-
-                // lifts arm then end effector
-                ArmLift(LIFT_SPEED, 10);
-                encoderDrive(DRIVE_SPEED, -0.5, -0.5, 0.2);
-
-                // turns and moves to warehouse
-                encoderDrive(TURN_SPEED, -0.75, 0.75, 1.15); // turns right
-                armMotor.setPower(-0.5);
-                encoderDrive(1, 5, 5, 2.5);
-                armMotor.setPower(0.0);
-
-                // Path Complete
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-
-            } else {
-                telemetry.addData("Shipping Element", "Unavailable");
-                telemetry.update();
-            }
         }
     }
 
@@ -342,7 +366,7 @@ public class Automatic_2 extends LinearOpMode {
         }
     }
 
-    public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
+    public void encoderDrive(double speed, double leftInches, double rightInches, double timeout) {
         int newLeftTarget;
         int newRightTarget;
         // Ensure that the opmode is still active
@@ -362,10 +386,10 @@ public class Automatic_2 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
             rightMotor.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftMotor.isBusy() && rightMotor.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
                 // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
+                telemetry.addData("Original Path",  "Running to %7d : %7d", newLeftTarget, newRightTarget);
+                telemetry.addData("Running Now",  "Running at %7d :%7d",
                         leftMotor.getCurrentPosition(),
                         rightMotor.getCurrentPosition());
                 telemetry.update();
@@ -380,27 +404,85 @@ public class Automatic_2 extends LinearOpMode {
         }
     }
 
-    public void ArmLift(double speed, double armInches) {
-        int newArmTarget;
+    public void JustRight(double speed, double Inches, double timeout) {
+        int newTarget;
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
             // Determine new target position, and pass to motor controller
-            newArmTarget = armMotor.getCurrentPosition() + (int)(armInches);
-            armMotor.setTargetPosition(newArmTarget);
+            newTarget = leftMotor.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            leftMotor.setTargetPosition(newTarget);
 
             // Turn On RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             runtime.reset();
-            armMotor.setPower(Math.abs(speed));
-            flippyMotor.setPower(-0.5);
+            leftMotor.setPower(Math.abs(speed));
 
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
+                telemetry.update();
+            }
             // Stop all motion;
-            armMotor.setPower(0);
+            leftMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    public void JustLeft(double speed, double Inches, double timeout) {
+        int newTarget;
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newTarget = rightMotor.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            rightMotor.setTargetPosition(newTarget);
+
+            // Turn On RUN_TO_POSITION
+            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            rightMotor.setPower(Math.abs(speed));
+
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
+                telemetry.update();
+            }
+            // Stop all motion;
+            rightMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+    public void ArmLift(double speed, double Inches, double timeout) {
+        int newTarget;
+
+        // Ensure that the opmode is still active int()
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newTarget = armMotor.getCurrentPosition() + (int)(Inches * ARM_COUNTS_PER_INCH);
+            armMotor.setTargetPosition(newTarget);
+
+            // Turn On RUN_TO_POSITION
+            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armMotor.setPower(Math.abs(speed + 0.045));
+
+            while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
+                // Display it for the driver.
+                telemetry.addData("Original Path",  "Running to %7d", newTarget);
+                telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
+                telemetry.update();
+            }
+            // Stop all motion
+            armMotor.setPower(0.0);
 
             // Turn off RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
 }
