@@ -111,7 +111,7 @@ public class Automatic extends LinearOpMode {
         encoderDrive(0.3, 1.0, 1.0, 0.3); // moves forwards
         JustLeft(0.5,2,1.0);
         armMotor.setPower(-0.5);
-        encoderDrive(0.5, 10, 10, 1.5); // moves forwards
+        encoderDrive(0.25, 10, 10, 1.5); // moves forwards
         armMotor.setPower(0.0);
         telemetry.addData("Path", "Complete");
         telemetry.update();

@@ -146,7 +146,11 @@ public class Automatic_1 extends LinearOpMode {
         encoderDrive(0.5, 1, -1, 0.3);
         encoderDrive(0.3, 5, 5, 0.5);
         ArmLift(0.5, 10, 2.0);
-
+        encoderDrive(0.3,-1, -1, 1.0);
+        encoderDrive(0.5, 1, -1, 1.0);
+        armMotor.setPower(-0.5);
+        encoderDrive(0.25, 10, 10, 1.0); // moves forwards
+        armMotor.setPower(0.0);
 
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
