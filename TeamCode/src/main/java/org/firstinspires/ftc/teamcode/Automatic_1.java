@@ -143,7 +143,8 @@ public class Automatic_1 extends LinearOpMode {
 //                telemetry.update();
 //            }
 // PLACE OF CHANGES
-        encoderDrive(0.5, 1, 1, 2.0);
+        encoderDrive(0.5, 1, -1, 0.3);
+        encoderDrive(0.3, 5, 5, 0.5);
         ArmLift(0.5, 10, 2.0);
 
 

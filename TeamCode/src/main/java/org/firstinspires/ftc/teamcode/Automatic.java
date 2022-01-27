@@ -33,7 +33,7 @@ public class Automatic extends LinearOpMode {
     static final double DRIVE_GEAR_REDUCTION    = 20;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES   = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double DRIVE_SPEED             = 0.3;
+    static final double DRIVE_SPEED             = 0.2;
     static final double TURN_SPEED              = 0.5;
     DcMotor leftMotor;
     DcMotor rightMotor;
@@ -99,15 +99,17 @@ public class Automatic extends LinearOpMode {
         //going to carasouel
         carasouelServo.setPosition(1.0);
         encoderDrive(DRIVE_SPEED,  -5,  -5, 0.7); // move back closer to carasouel
-        encoderDrive(TURN_SPEED, 1.5,-1.5,0.5); // turn to the left
-        encoderDrive(0.3,-1.5, -1.5, 0.5); // move backwards
+        encoderDrive(TURN_SPEED, 1.5,-1.5,0.3); // turn to the left
+        encoderDrive(0.3,-1.5, -1.5, 0.3); // move backwards
+        sleep(200);
         encoderDrive(0.2, -1, -1, 0.5);
-        encoderDrive(0.1, -0.5,-0.5,0.5);
+        sleep(200);
+        encoderDrive(0.1, -0.5,-0.5,0.3);
         sleep(3000);
         carasouelServo.setPosition(0.5);
-        
-        encoderDrive(0.3, 1.0, 1.0, 1.0); // moves forwards
-        encoderDrive(0.3, -0.75, 0.75, 1.15); // moves right
+
+        encoderDrive(0.3, 1.0, 1.0, 0.3); // moves forwards
+        JustLeft(0.5,3,1.0);
         armMotor.setPower(-0.5);
         encoderDrive(0.5, 10, 10, 2.5); // moves forwards
         armMotor.setPower(0.0);
@@ -320,6 +322,59 @@ public class Automatic extends LinearOpMode {
             public SkystonePosition getAnalysis() {
                 return position;
             }
+    }
+
+    public void JustRight(double speed, double Inches, double timeout) {
+        int newTarget;
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newTarget = leftMotor.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            leftMotor.setTargetPosition(newTarget);
+
+            // Turn On RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            leftMotor.setPower(Math.abs(speed));
+
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
+                telemetry.update();
+            }
+            // Stop all motion;
+            leftMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+    public void JustLeft(double speed, double Inches, double timeout) {
+        int newTarget;
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newTarget = rightMotor.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            rightMotor.setTargetPosition(newTarget);
+
+            // Turn On RUN_TO_POSITION
+            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            rightMotor.setPower(Math.abs(speed));
+
+            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
+                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
+                telemetry.update();
+            }
+            // Stop all motion;
+            rightMotor.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
 
 }
