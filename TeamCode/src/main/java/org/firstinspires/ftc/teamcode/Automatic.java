@@ -324,32 +324,6 @@ public class Automatic extends LinearOpMode {
             }
     }
 
-    public void JustRight(double speed, double Inches, double timeout) {
-        int newTarget;
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-            // Determine new target position, and pass to motor controller
-            newTarget = leftMotor.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
-            leftMotor.setTargetPosition(newTarget);
-
-            // Turn On RUN_TO_POSITION
-            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            leftMotor.setPower(Math.abs(speed));
-
-            while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
-                telemetry.update();
-            }
-            // Stop all motion;
-            leftMotor.setPower(0);
-
-            // Turn off RUN_TO_POSITION
-            leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
     public void JustLeft(double speed, double Inches, double timeout) {
         int newTarget;
         // Ensure that the opmode is still active

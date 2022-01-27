@@ -29,7 +29,7 @@ public class Automatic_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;           
     SkystoneDeterminationPipeline pipeline;
-    static double elementPosition;
+    static double elementPosition = 1;
 
     // Encoder variables
     private final ElapsedTime runtime = new ElapsedTime();
@@ -52,8 +52,11 @@ public class Automatic_1 extends LinearOpMode {
     @Override
     public void runOpMode() {
         // initializing all camera elements
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "cameraMonitorViewId",
+                "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class,
+                "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -100,57 +103,83 @@ public class Automatic_1 extends LinearOpMode {
 
 	    // Wait for the game to start (driver presses PLAY)
         waitForStart();
-//            if (elementPosition == 1) /* LEFT - highest level */ {
-//                // turn to shipping hub
-//                encoderDrive(0.5, -1,1, 1.0);
-//                encoderDrive(0.5, 5, 5, 1.5);
-//
-//                // Lift arm
-//                ArmLift(0.3, 20, 2.0);
-//
-//
-//                // Path Complete
-//                telemetry.addData("Path", "Complete");
-//                telemetry.update();
-//                break;
-//
-//            } else if (elementPosition == 2) /* CENTER */ {
-//                // turn to shipping hub
-//                JustRight(0.5, 10, 1.0);
-//
-//                // Lift arm
-//                ArmLift(0.5, 20, 1.0);
-//
-//                // Path Complete
-//                telemetry.addData("Path", "Complete");
-//                telemetry.update();
-//                break;
-//
-//            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-//                // turn to shipping hub
-//                JustRight(0.5, 10, 1.0);
-//
-//                // Lift arm
-//                ArmLift(0.5, 10, 1.0);
-//
-//                // Path Complete
-//                telemetry.addData("Path", "Complete");
-//                telemetry.update();
-//                break;
-//
-//            } else {
-//                telemetry.addData("Shipping Element", "Unavailable uwu");
-//                telemetry.update();
-//            }
-// PLACE OF CHANGES
-        encoderDrive(0.5, 1, -1, 0.3);
-        encoderDrive(0.3, 5, 5, 0.5);
-        ArmLift(0.5, 10, 2.0);
-        encoderDrive(0.3,-1, -1, 1.0);
-        encoderDrive(0.5, 1, -1, 1.0);
-        armMotor.setPower(-0.5);
-        encoderDrive(0.25, 10, 10, 1.0); // moves forwards
-        armMotor.setPower(0.0);
+
+            if (elementPosition == 1) /* LEFT - highest level */ {
+                // go to carasouel
+                encoderDrive(0.5, 1, -1, 0.3);
+                encoderDrive(0.3, 5, 5, 0.5);
+
+                // lift arm
+                ArmLift(0.5, 10, 3.15);
+                sleep(50);
+                flippyMotor.setPower(0.5);
+                sleep(3000);
+                flippyMotor.setPower(0.0);
+
+                // go to warehouse
+                encoderDrive(0.3,-1, -1, 0.5);
+                encoderDrive(0.5, 1, -1, 0.3);
+                armMotor.setPower(-0.5);
+                encoderDrive(0.25, 10, 10, 1.5);
+                armMotor.setPower(0.0);
+
+                // Path Complete
+                telemetry.addData("Arm Path", "Complete");
+                telemetry.update();
+
+                return;
+            } else if (elementPosition == 2) /* CENTER */ {
+                // go to carasouel
+                encoderDrive(0.5, 1, -1, 0.3);
+                encoderDrive(0.3, 5, 5, 0.5);
+
+                // lift arm
+                ArmLift(0.5, 10, 3.15);
+                sleep(50);
+                flippyMotor.setPower(0.5);
+                sleep(3000);
+                flippyMotor.setPower(0.0);
+
+                // go to warehouse
+                encoderDrive(0.3,-1, -1, 0.5);
+                encoderDrive(0.5, 1, -1, 0.3);
+                armMotor.setPower(-0.5);
+                encoderDrive(0.25, 10, 10, 1.5);
+                armMotor.setPower(0.0);
+
+                // Path Complete
+                telemetry.addData("Arm Path", "Complete");
+                telemetry.update();
+
+                return;
+            } else if (elementPosition == 3) /* RIGHT - lowest level */ {
+                // go to carasouel
+                encoderDrive(0.5, 1, -1, 0.3);
+                encoderDrive(0.3, 5, 5, 0.5);
+
+                // lift arm
+                ArmLift(0.5, 10, 3.15);
+                sleep(50);
+                flippyMotor.setPower(0.5);
+                sleep(3000);
+                flippyMotor.setPower(0.0);
+
+                // go to warehouse
+                encoderDrive(0.3,-1, -1, 0.5);
+                encoderDrive(0.5, 1, -1, 0.3);
+                armMotor.setPower(-0.5);
+                encoderDrive(0.25, 10, 10, 1.5);
+                armMotor.setPower(0.0);
+
+                // Path Complete
+                telemetry.addData("Arm Path", "Complete");
+                telemetry.update();
+
+                return;
+            } else {
+                telemetry.addData("Shipping Element", "Unavailable");
+                telemetry.update();
+            }
 
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
@@ -185,7 +214,7 @@ public class Automatic_1 extends LinearOpMode {
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250);
         static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250);
         static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(450,250);
-        static final int REGION_WIDTH = 100; 
+        static final int REGION_WIDTH = 100;
         static final int REGION_HEIGHT = 100;
 
         Point region1_pointA = new Point(
@@ -250,7 +279,7 @@ public class Automatic_1 extends LinearOpMode {
             /*
              * The following rectangles are simply visual aid. They serve no functional purpose.
              */
-             
+
             //region 1
             Imgproc.rectangle(
                     input, // Buffer to draw on
@@ -288,7 +317,7 @@ public class Automatic_1 extends LinearOpMode {
              */
             if(max == avg1) // Was it from region 1?
             {
-                elementPosition = 1; // for use in the encoders, LEFT
+//                elementPosition = 1; // for use in the encoders, LEFT
                 position = SkystonePosition.LEFT; // Record our analysis
 
                 //overlays a green rectangle
@@ -301,9 +330,9 @@ public class Automatic_1 extends LinearOpMode {
             }
             else if(max == avg2) // Was it from region 2?
             {
-                elementPosition = 2; //CENTER
+//                elementPosition = 2; //CENTER
                 position = SkystonePosition.CENTER; // Record our analysis
-                
+
                 // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
@@ -314,9 +343,9 @@ public class Automatic_1 extends LinearOpMode {
             }
             else if(max == avg3) // Was it from region 3?
             {
-                elementPosition = 3; //RIGHT
+//                final elementPosition = 3; //RIGHT
                 position = SkystonePosition.RIGHT; // Record our analysis
-                
+
                 // overlays a green rectangle
                 Imgproc.rectangle(
                         input, // Buffer to draw on
@@ -440,7 +469,7 @@ public class Automatic_1 extends LinearOpMode {
 
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(Math.abs(speed));
+            armMotor.setPower(Math.abs(speed + 0.045));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
@@ -448,18 +477,12 @@ public class Automatic_1 extends LinearOpMode {
                 telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
                 telemetry.update();
             }
-
-            // Stop all motion and do flippy motor
-            sleep(2000);
-            flippyMotor.setPower(0.5);
-            sleep(1750);
-            flippyMotor.setPower(0.0);
+            // Stop all motion
             armMotor.setPower(0.0);
 
             // Turn off RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            armMotor.setPower(0.0);
         }
     }
 }
