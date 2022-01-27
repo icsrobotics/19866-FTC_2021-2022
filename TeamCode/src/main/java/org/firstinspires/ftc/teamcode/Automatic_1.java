@@ -29,7 +29,7 @@ public class Automatic_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;           
     SkystoneDeterminationPipeline pipeline;
-    static double elementPosition = 1;
+    static double elementPosition;
 
     // Encoder variables
     private final ElapsedTime runtime = new ElapsedTime();
@@ -317,7 +317,7 @@ public class Automatic_1 extends LinearOpMode {
              */
             if(max == avg1) // Was it from region 1?
             {
-//                elementPosition = 1; // for use in the encoders, LEFT
+                elementPosition = 1; // for use in the encoders, LEFT
                 position = SkystonePosition.LEFT; // Record our analysis
 
                 //overlays a green rectangle
@@ -330,7 +330,7 @@ public class Automatic_1 extends LinearOpMode {
             }
             else if(max == avg2) // Was it from region 2?
             {
-//                elementPosition = 2; //CENTER
+                elementPosition = 2; //CENTER
                 position = SkystonePosition.CENTER; // Record our analysis
 
                 // overlays a green rectangle
@@ -343,7 +343,7 @@ public class Automatic_1 extends LinearOpMode {
             }
             else if(max == avg3) // Was it from region 3?
             {
-//                final elementPosition = 3; //RIGHT
+                elementPosition = 3; //RIGHT
                 position = SkystonePosition.RIGHT; // Record our analysis
 
                 // overlays a green rectangle
