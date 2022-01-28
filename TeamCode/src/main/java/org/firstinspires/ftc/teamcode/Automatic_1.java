@@ -187,7 +187,6 @@ public class Automatic_1 extends LinearOpMode {
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
-
         }
     }
 
