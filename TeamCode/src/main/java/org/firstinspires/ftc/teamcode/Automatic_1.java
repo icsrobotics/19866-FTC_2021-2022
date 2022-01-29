@@ -106,22 +106,20 @@ public class Automatic_1 extends LinearOpMode {
 
             if (elementPosition == 1) /* LEFT - highest level */ {
                 // go to carasouel
-                encoderDrive(0.5, 1, -1, 0.3);
-                encoderDrive(0.3, 5, 5, 0.5);
+                encoderDrive(0.5, 1, -1, 0.35);
+                encoderDrive(0.27, 5, 5, 0.6);
 
                 // lift arm
                 ArmLift(0.5, 10, 3.15);
                 sleep(50);
-                flippyMotor.setPower(0.5);
+                flippyMotor.setPower(1.0);
                 sleep(3000);
                 flippyMotor.setPower(0.0);
 
                 // go to warehouse
                 encoderDrive(0.3,-1, -1, 0.5);
-                encoderDrive(0.5, 1, -1, 0.3);
-                armMotor.setPower(-0.5);
+                encoderDrive(0.3, 1, -1, 0.3);
                 encoderDrive(0.25, 10, 10, 1.5);
-                armMotor.setPower(0.0);
 
                 // Path Complete
                 telemetry.addData("Arm Path", "Complete");
@@ -130,22 +128,21 @@ public class Automatic_1 extends LinearOpMode {
                 return;
             } else if (elementPosition == 2) /* CENTER */ {
                 // go to carasouel
-                encoderDrive(0.5, 1, -1, 0.3);
-                encoderDrive(0.3, 5, 5, 0.5);
+                encoderDrive(0.5, 1, -1, 0.35);
+                encoderDrive(0.27, 5, 5, 0.6);
 
                 // lift arm
-                ArmLift(0.5, 10, 3.15);
+                ArmLift(0.5, 10, 2.5);
                 sleep(50);
-                flippyMotor.setPower(0.5);
+                flippyMotor.setPower(1.0);
                 sleep(3000);
                 flippyMotor.setPower(0.0);
+                armMotor.setPower(1.0);
 
                 // go to warehouse
                 encoderDrive(0.3,-1, -1, 0.5);
-                encoderDrive(0.5, 1, -1, 0.3);
-                armMotor.setPower(-0.5);
-                encoderDrive(0.25, 10, 10, 1.5);
-                armMotor.setPower(0.0);
+                encoderDrive(0.3, 1, -1, 0.3);
+                encoderDrive(0.25, 10, 10, 2.5);
 
                 // Path Complete
                 telemetry.addData("Arm Path", "Complete");
@@ -154,22 +151,21 @@ public class Automatic_1 extends LinearOpMode {
                 return;
             } else if (elementPosition == 3) /* RIGHT - lowest level */ {
                 // go to carasouel
-                encoderDrive(0.5, 1, -1, 0.3);
-                encoderDrive(0.3, 5, 5, 0.5);
+                encoderDrive(0.5, 1, -1, 0.35);
+                encoderDrive(0.27, 5, 5, 0.6);
 
                 // lift arm
-                ArmLift(0.5, 10, 3.15);
+                ArmLift(0.5, 10, 2.0);
                 sleep(50);
-                flippyMotor.setPower(0.5);
+                flippyMotor.setPower(1.0);
                 sleep(3000);
                 flippyMotor.setPower(0.0);
+                armMotor.setPower(1.0);
 
                 // go to warehouse
                 encoderDrive(0.3,-1, -1, 0.5);
-                encoderDrive(0.5, 1, -1, 0.3);
-                armMotor.setPower(-0.5);
+                encoderDrive(0.3, 1, -1, 0.3);
                 encoderDrive(0.25, 10, 10, 1.5);
-                armMotor.setPower(0.0);
 
                 // Path Complete
                 telemetry.addData("Arm Path", "Complete");
@@ -211,8 +207,8 @@ public class Automatic_1 extends LinearOpMode {
          * The core values which define the location and size of the sample regions
          */
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100,250);
-        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(275,250);
-        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(450,250);
+        static final Point REGION2_TOPLEFT_ANCHOR_POINT = new Point(300,250);
+        static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(500,250);
         static final int REGION_WIDTH = 100;
         static final int REGION_HEIGHT = 100;
 
@@ -468,7 +464,7 @@ public class Automatic_1 extends LinearOpMode {
 
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(Math.abs(speed + 0.045));
+            armMotor.setPower(Math.abs(speed + 0.07));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
