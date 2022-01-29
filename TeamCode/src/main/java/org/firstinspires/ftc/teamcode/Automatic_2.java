@@ -105,7 +105,8 @@ public class Automatic_2 extends LinearOpMode {
         waitForStart();
 
         if (elementPosition == 1) /* LEFT - highest level */ {
-            // go to carasouel
+
+            // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
 
@@ -126,8 +127,10 @@ public class Automatic_2 extends LinearOpMode {
             telemetry.update();
 
             return;
+
         } else if (elementPosition == 2) /* CENTER */ {
-            // go to carasouel
+
+            // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
 
@@ -149,8 +152,10 @@ public class Automatic_2 extends LinearOpMode {
             telemetry.update();
 
             return;
+
         } else if (elementPosition == 3) /* RIGHT - lowest level */ {
-            // go to carasouel
+
+            // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
 
@@ -399,6 +404,34 @@ public class Automatic_2 extends LinearOpMode {
         }
     }
 
+    public void ArmLift(double speed, double Inches, double timeout) {
+        int newTarget;
+
+        // Ensure that the opmode is still active int()
+        if (opModeIsActive()) {
+            // Determine new target position, and pass to motor controller
+            newTarget = armMotor.getCurrentPosition() + (int)(Inches * ARM_COUNTS_PER_INCH);
+            armMotor.setTargetPosition(newTarget);
+
+            // Turn On RUN_TO_POSITION
+            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armMotor.setPower(Math.abs(speed + 0.07));
+
+            while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
+                // Display it for the driver.
+                telemetry.addData("Original Path",  "Running to %7d", newTarget);
+                telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
+                telemetry.update();
+            }
+            // Stop all motion
+            armMotor.setPower(0.0);
+
+            // Turn off RUN_TO_POSITION
+            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
+    }
+
     public void JustRight(double speed, double Inches, double timeout) {
         int newTarget;
         // Ensure that the opmode is still active
@@ -453,31 +486,4 @@ public class Automatic_2 extends LinearOpMode {
         }
     }
 
-    public void ArmLift(double speed, double Inches, double timeout) {
-        int newTarget;
-
-        // Ensure that the opmode is still active int()
-        if (opModeIsActive()) {
-            // Determine new target position, and pass to motor controller
-            newTarget = armMotor.getCurrentPosition() + (int)(Inches * ARM_COUNTS_PER_INCH);
-            armMotor.setTargetPosition(newTarget);
-
-            // Turn On RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(Math.abs(speed + 0.07));
-
-            while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
-                // Display it for the driver.
-                telemetry.addData("Original Path",  "Running to %7d", newTarget);
-                telemetry.addData("Running Now",  "Running at %7d", armMotor.getCurrentPosition());
-                telemetry.update();
-            }
-            // Stop all motion
-            armMotor.setPower(0.0);
-
-            // Turn off RUN_TO_POSITION
-            armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        }
-    }
 }
