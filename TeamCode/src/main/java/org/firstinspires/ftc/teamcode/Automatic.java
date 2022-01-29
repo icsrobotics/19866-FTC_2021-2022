@@ -116,6 +116,7 @@ public class Automatic extends LinearOpMode {
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
+
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
