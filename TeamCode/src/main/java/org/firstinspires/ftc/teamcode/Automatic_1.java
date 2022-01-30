@@ -447,7 +447,7 @@ public class Automatic_1 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
+                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
                 telemetry.update();
             }
             // Stop all motion;
@@ -474,7 +474,7 @@ public class Automatic_1 extends LinearOpMode {
             rightMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
+                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
                 telemetry.update();
             }
             // Stop all motion;
