@@ -123,6 +123,8 @@ public class Auto_Blue_2 extends LinearOpMode {
             encoderDrive(0.3, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
+            encoderDrive(0.5, -1, -1, 0.5);
+
             // Path Complete
             telemetry.addData("Arm Path", "Complete");
             telemetry.update();

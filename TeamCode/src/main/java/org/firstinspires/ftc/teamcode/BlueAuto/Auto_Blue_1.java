@@ -116,6 +116,8 @@ public class Auto_Blue_1 extends LinearOpMode {
             sleep(3000);
             flippyMotor.setPower(0.0);
 
+            encoderDrive(0.5, -1, -1, 0.5);
+
             // Path Complete
             telemetry.addData("Arm Path", "Complete");
             telemetry.update();

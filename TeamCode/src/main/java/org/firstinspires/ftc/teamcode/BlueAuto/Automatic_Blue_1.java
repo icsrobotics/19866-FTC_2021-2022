@@ -117,6 +117,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
             encoderDrive(0.3, 1, -1, 0.45);
+            ArmLift(1.0, 10, 0.5);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -141,8 +142,8 @@ public class Automatic_Blue_1 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 1.0);
             encoderDrive(0.3, 1, -1, 0.75);
+            ArmLift(1.0, 10, 1.5);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -166,8 +167,8 @@ public class Automatic_Blue_1 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 2.0);
             encoderDrive(0.3, 1, -1, 0.75);
+            ArmLift(1.0, 10, 2.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
