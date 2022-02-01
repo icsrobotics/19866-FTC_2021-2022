@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Blue Side (Near Carousel)", group = "Linear Opmode")
+@Autonomous(name = "Autonomous Blue Side (Near Carousel) Without Going To Warehouse", group = "Linear Opmode")
 public class Auto_Blue_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
@@ -104,26 +104,17 @@ public class Auto_Blue_1 extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // lowest to highest
-
-        if (elementPosition == 1) /* LEFT - lowest level */ {
+        if (elementPosition == 3) /* RIGHT - highest level */ {
             // go to shipping hub
             encoderDrive(0.5, 1, -1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
 
             // lift arm
-            ArmLift(0.5, 10, 2.0);
+            ArmLift(0.5, 10, 2.75);
             sleep(50);
             flippyMotor.setPower(1.0);
             sleep(3000);
             flippyMotor.setPower(0.0);
-            armMotor.setPower(1.0);
-
-            // go to warehouse
-            encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 2.0);
-            encoderDrive(0.3, 1, -1, 0.75);
-            encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
             telemetry.addData("Arm Path", "Complete");
@@ -145,40 +136,31 @@ public class Auto_Blue_1 extends LinearOpMode {
             flippyMotor.setPower(0.0);
             armMotor.setPower(1.0);
 
-            // go to warehouse
-            encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 1.0);
-            encoderDrive(0.3, 1, -1, 0.75);
-            encoderDrive(0.25, 10, 10, 1.5);
-
             // Path Complete
             telemetry.addData("Arm Path", "Complete");
             telemetry.update();
 
             return;
 
-        } else if (elementPosition == 3) /* RIGHT - highest level */ {
+        } else if (elementPosition == 1) /* LEFT - lowest level */ {
             // go to shipping hub
             encoderDrive(0.5, 1, -1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
 
             // lift arm
-            ArmLift(0.5, 10, 2.75);
+            ArmLift(0.5, 10, 2.0);
             sleep(50);
             flippyMotor.setPower(1.0);
             sleep(3000);
             flippyMotor.setPower(0.0);
-
-            // go to warehouse
-            encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.3, 1, -1, 0.45);
-            encoderDrive(0.25, 10, 10, 1.5);
+            armMotor.setPower(1.0);
 
             // Path Complete
             telemetry.addData("Arm Path", "Complete");
             telemetry.update();
 
             return;
+
         } else {
             telemetry.addData("Shipping Element", "Unavailable");
             telemetry.update();

@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Blue Side (Near Warehouse) w/ no warehouse", group = "Linear Opmode")
+@Autonomous(name = "Autonomous Blue Side (Near Warehouse) Without Going To Warehouse", group = "Linear Opmode")
 public class Auto_Blue_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
@@ -104,8 +104,6 @@ public class Auto_Blue_2 extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // lowest to highest
-
         if (elementPosition == 1) /* LEFT - lowest level */ {
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
@@ -179,6 +177,7 @@ public class Auto_Blue_2 extends LinearOpMode {
             telemetry.update();
 
             return;
+
         } else {
             telemetry.addData("Shipping Element", "Unavailable");
             telemetry.update();
