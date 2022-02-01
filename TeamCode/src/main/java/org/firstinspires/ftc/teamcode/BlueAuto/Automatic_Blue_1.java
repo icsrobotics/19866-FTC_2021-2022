@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Blue Side (Near Carousel)", group = "Linear Opmode")
+@Autonomous(name = "Autonomous For Blue Side (Near Carousel)", group = "Linear Opmode")
 public class Automatic_Blue_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;           
@@ -53,8 +53,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
     public void runOpMode() {
         // initializing all camera elements
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId",
-                "id", hardwareMap.appContext.getPackageName());
+                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class,
                 "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -104,85 +103,83 @@ public class Automatic_Blue_1 extends LinearOpMode {
 	    // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // lowest to highest
+        if (elementPosition == 3) /* RIGHT - highest level */ {
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
+            // lift arm
+            ArmLift(0.5, 10, 2.75);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
 
-            if (elementPosition == 1) /* LEFT - lowest level */ {
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            encoderDrive(0.3, 1, -1, 0.45);
+            encoderDrive(0.25, 10, 10, 1.5);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.0);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(1.0);
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                ArmLift(1.0, 10, 2.0);
-                encoderDrive(0.3, 1, -1, 0.75);
-                encoderDrive(0.25, 10, 10, 1.5);
+            return;
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
+        } else if (elementPosition == 2) /* CENTER */ {
 
-                return;
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
 
-            } else if (elementPosition == 2) /* CENTER */ {
+            // lift arm
+            ArmLift(0.5, 10, 2.5);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+            armMotor.setPower(1.0);
 
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            ArmLift(1.0, 10, 1.0);
+            encoderDrive(0.3, 1, -1, 0.75);
+            encoderDrive(0.25, 10, 10, 1.5);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.5);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(1.0);
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                ArmLift(1.0, 10, 1.0);
-                encoderDrive(0.3, 1, -1, 0.75);
-                encoderDrive(0.25, 10, 10, 1.5);
+            return;
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
+        } else if (elementPosition == 1) /* LEFT - lowest level */ {
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
 
-                return;
+            // lift arm
+            ArmLift(0.5, 10, 2.0);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+            armMotor.setPower(1.0);
 
-            } else if (elementPosition == 3) /* RIGHT - highest level */ {
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            ArmLift(1.0, 10, 2.0);
+            encoderDrive(0.3, 1, -1, 0.75);
+            encoderDrive(0.25, 10, 10, 1.5);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.75);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                encoderDrive(0.3, 1, -1, 0.45);
-                encoderDrive(0.25, 10, 10, 1.5);
+            return;
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
-
-                return;
-            } else {
+        } else {
                 telemetry.addData("Shipping Element", "Unavailable");
                 telemetry.update();
-            }
+        }
 
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());

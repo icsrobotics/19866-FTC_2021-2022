@@ -53,8 +53,7 @@ public class Automatic_Red_1 extends LinearOpMode {
     public void runOpMode() {
         // initializing all camera elements
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId",
-                "id", hardwareMap.appContext.getPackageName());
+                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class,
                 "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -128,7 +127,6 @@ public class Automatic_Red_1 extends LinearOpMode {
             return;
 
         } else if (elementPosition == 2) /* CENTER */ {
-
             // go to shipping hub
             encoderDrive(0.5, 1, -1, 0.35);
             encoderDrive(0.27, 5, 5, 0.6);
@@ -178,6 +176,7 @@ public class Automatic_Red_1 extends LinearOpMode {
             telemetry.update();
 
             return;
+
         } else {
             telemetry.addData("Shipping Element", "Unavailable");
             telemetry.update();
