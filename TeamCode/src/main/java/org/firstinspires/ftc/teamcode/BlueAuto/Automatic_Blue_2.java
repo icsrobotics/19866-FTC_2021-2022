@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.BlueAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -24,8 +24,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Blue Side (Near Carousel)", group = "Linear Opmode")
-public class Auto_Blue_1 extends LinearOpMode {
+@Autonomous(name = "Autonomous Blue Side (Near Warehouse)", group = "Linear Opmode")
+public class Automatic_Blue_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
@@ -108,8 +108,8 @@ public class Auto_Blue_1 extends LinearOpMode {
 
         if (elementPosition == 1) /* LEFT - lowest level */ {
             // go to shipping hub
-            encoderDrive(0.5, 1, -1, 0.35);
-            encoderDrive(0.27, 5, 5, 0.6);
+            encoderDrive(0.5, -1, 1, 0.375);
+            encoderDrive(0.27, 5, 5, 0.55);
 
             // lift arm
             ArmLift(0.5, 10, 2.0);
@@ -121,8 +121,8 @@ public class Auto_Blue_1 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 2.0);
-            encoderDrive(0.3, 1, -1, 0.75);
+            ArmLift(1.0, 10, 1.0);
+            encoderDrive(0.3, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -134,8 +134,8 @@ public class Auto_Blue_1 extends LinearOpMode {
         } else if (elementPosition == 2) /* CENTER */ {
 
             // go to shipping hub
-            encoderDrive(0.5, 1, -1, 0.35);
-            encoderDrive(0.27, 5, 5, 0.6);
+            encoderDrive(0.5, -1, 1, 0.375);
+            encoderDrive(0.27, 5, 5, 0.55);
 
             // lift arm
             ArmLift(0.5, 10, 2.5);
@@ -147,8 +147,8 @@ public class Auto_Blue_1 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            ArmLift(1.0, 10, 1.0);
-            encoderDrive(0.3, 1, -1, 0.75);
+            ArmLift(1.0, 10, 0.7);
+            encoderDrive(0.3, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -159,8 +159,8 @@ public class Auto_Blue_1 extends LinearOpMode {
 
         } else if (elementPosition == 3) /* RIGHT - highest level */ {
             // go to shipping hub
-            encoderDrive(0.5, 1, -1, 0.35);
-            encoderDrive(0.27, 5, 5, 0.6);
+            encoderDrive(0.5, -1, 1, 0.375);
+            encoderDrive(0.27, 5, 5, 0.55);
 
             // lift arm
             ArmLift(0.5, 10, 2.75);
@@ -171,7 +171,7 @@ public class Auto_Blue_1 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.3, 1, -1, 0.45);
+            encoderDrive(0.3, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -417,7 +417,7 @@ public class Auto_Blue_1 extends LinearOpMode {
 
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(Math.abs(speed + 0.1));
+            armMotor.setPower(Math.abs(speed + 0.07));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
@@ -450,7 +450,7 @@ public class Auto_Blue_1 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
+                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
                 telemetry.update();
             }
             // Stop all motion;
@@ -477,7 +477,7 @@ public class Auto_Blue_1 extends LinearOpMode {
             rightMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
+                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
                 telemetry.update();
             }
             // Stop all motion;

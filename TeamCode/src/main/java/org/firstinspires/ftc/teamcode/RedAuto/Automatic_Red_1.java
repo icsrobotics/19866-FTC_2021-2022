@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.RedAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -24,10 +24,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Blue Side (Near Carousel)", group = "Linear Opmode")
-public class Automatic_Blue_1 extends LinearOpMode {
+@Autonomous(name = "Autonomous Red Side (Near Carousel)", group = "Linear Opmode")
+public class Automatic_Red_1 extends LinearOpMode {
     // Camera variables
-    private OpenCvCamera webcam;           
+    private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
     static double elementPosition;
 
@@ -68,7 +68,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
                 telemetry.update();
             }
         });
-        
+
         // initializing all motor elements
         leftMotor = hardwareMap.dcMotor.get("Right_Motor");
         rightMotor = hardwareMap.dcMotor.get("Left_Motor");
@@ -101,88 +101,87 @@ public class Automatic_Blue_1 extends LinearOpMode {
         telemetry = dashboard.getTelemetry();
         FtcDashboard.getInstance().startCameraStream(webcam, 10);
 
-	    // Wait for the game to start (driver presses PLAY)
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // lowest to highest
+        if (elementPosition == 1) /* LEFT - highest level */ {
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
 
-            if (elementPosition == 1) /* LEFT - lowest level */ {
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // lift arm
+            ArmLift(0.5, 10, 3.15);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.0);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(1.0);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            encoderDrive(0.3, 1, -1, 0.3);
+            encoderDrive(0.25, 10, 10, 1.5);
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                ArmLift(1.0, 10, 2.0);
-                encoderDrive(0.3, 1, -1, 0.75);
-                encoderDrive(0.25, 10, 10, 1.5);
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
+            return;
 
-                return;
+        } else if (elementPosition == 2) /* CENTER */ {
 
-            } else if (elementPosition == 2) /* CENTER */ {
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
 
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // lift arm
+            ArmLift(0.5, 10, 2.5);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+            armMotor.setPower(1.0);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.5);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
-                armMotor.setPower(1.0);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            ArmLift(1.0, 10, 0.5);
+            encoderDrive(0.3, 1, -1, 0.3);
+            encoderDrive(0.25, 10, 10, 2.5);
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                ArmLift(1.0, 10, 1.0);
-                encoderDrive(0.3, 1, -1, 0.75);
-                encoderDrive(0.25, 10, 10, 1.5);
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
+            return;
 
-                return;
+        } else if (elementPosition == 3) /* RIGHT - lowest level */ {
 
-            } else if (elementPosition == 3) /* RIGHT - highest level */ {
-                // go to shipping hub
-                encoderDrive(0.5, 1, -1, 0.35);
-                encoderDrive(0.27, 5, 5, 0.6);
+            // go to shipping hub
+            encoderDrive(0.5, 1, -1, 0.35);
+            encoderDrive(0.27, 5, 5, 0.6);
 
-                // lift arm
-                ArmLift(0.5, 10, 2.75);
-                sleep(50);
-                flippyMotor.setPower(1.0);
-                sleep(3000);
-                flippyMotor.setPower(0.0);
+            // lift arm
+            ArmLift(0.5, 10, 2.0);
+            sleep(50);
+            flippyMotor.setPower(1.0);
+            sleep(3000);
+            flippyMotor.setPower(0.0);
+            armMotor.setPower(1.0);
 
-                // go to warehouse
-                encoderDrive(0.3,-1, -1, 0.5);
-                encoderDrive(0.3, 1, -1, 0.45);
-                encoderDrive(0.25, 10, 10, 1.5);
+            // go to warehouse
+            encoderDrive(0.3,-1, -1, 0.5);
+            ArmLift(1.0, 10, 1.0);
+            encoderDrive(0.3, 1, -1, 0.3);
+            encoderDrive(0.25, 10, 10, 1.5);
 
-                // Path Complete
-                telemetry.addData("Arm Path", "Complete");
-                telemetry.update();
+            // Path Complete
+            telemetry.addData("Arm Path", "Complete");
+            telemetry.update();
 
-                return;
-            } else {
-                telemetry.addData("Shipping Element", "Unavailable");
-                telemetry.update();
-            }
+            return;
+        } else {
+            telemetry.addData("Shipping Element", "Unavailable");
+            telemetry.update();
+        }
 
         while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
