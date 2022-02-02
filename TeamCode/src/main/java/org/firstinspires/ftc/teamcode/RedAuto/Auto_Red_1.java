@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous Red Side (Near Carousel) Without Going To Warehouse", group = "Linear Opmode")
+@Autonomous(name = "Red Side (Near Carousel) Without Going To Warehouse", group = "Linear Opmode")
 public class Auto_Red_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;

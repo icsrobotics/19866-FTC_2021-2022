@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Autonomous For Blue Side (Near Warehouse)", group = "Linear Opmode")
+@Autonomous(name = "Blue Side (Near Warehouse)", group = "Linear Opmode")
 public class Automatic_Blue_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
@@ -107,18 +107,19 @@ public class Automatic_Blue_2 extends LinearOpMode {
         if (elementPosition == 3) /* RIGHT - highest level */ {
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.55);
+            encoderDrive(0.27, 5, 5, 0.3);
 
             // lift arm
             ArmLift(0.5, 10, 2.75);
+            encoderDrive(0.3, 5, 5, 0.3);
             sleep(50);
-            flippyMotor.setPower(1.0);
+            flippyMotor.setPower(0.7);
             sleep(3000);
             flippyMotor.setPower(0.0);
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.3, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -130,10 +131,11 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.55);
+            encoderDrive(0.27, 5, 5, 0.3);
 
             // lift arm
             ArmLift(0.5, 10, 2.5);
+            encoderDrive(0.5, 5, 5, 0.2);
             sleep(50);
             flippyMotor.setPower(1.0);
             sleep(3000);
@@ -143,7 +145,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
             ArmLift(1.0, 10, 0.7);
-            encoderDrive(0.3, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -155,10 +157,11 @@ public class Automatic_Blue_2 extends LinearOpMode {
         } else if (elementPosition == 1) /* LEFT - lowest level */ {
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.55);
+            encoderDrive(0.27, 5, 5, 0.3);
 
             // lift arm
             ArmLift(0.5, 10, 2.0);
+            encoderDrive(0.5, 5, 5, 0.2);
             sleep(50);
             flippyMotor.setPower(1.0);
             sleep(3000);
@@ -168,7 +171,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
             ArmLift(1.0, 10, 1.0);
-            encoderDrive(0.3, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 1.0);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
