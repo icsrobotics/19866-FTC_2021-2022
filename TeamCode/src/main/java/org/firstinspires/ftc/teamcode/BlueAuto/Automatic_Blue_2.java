@@ -107,7 +107,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
         if (elementPosition == 3) /* RIGHT - highest level */ {
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.3);
+            encoderDrive(0.27, 5, 5, 0.5);
 
             // lift arm
             ArmLift(0.5, 10, 2.75);
@@ -119,7 +119,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.25, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 0.7);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -131,7 +131,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.3);
+            encoderDrive(0.27, 5, 5, 0.5);
 
             // lift arm
             ArmLift(0.5, 10, 2.5);
@@ -145,7 +145,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
             ArmLift(1.0, 10, 0.7);
-            encoderDrive(0.25, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 0.7);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
@@ -157,7 +157,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
         } else if (elementPosition == 1) /* LEFT - lowest level */ {
             // go to shipping hub
             encoderDrive(0.5, -1, 1, 0.375);
-            encoderDrive(0.27, 5, 5, 0.3);
+            encoderDrive(0.27, 5, 5, 0.5);
 
             // lift arm
             ArmLift(0.5, 10, 2.0);
@@ -171,7 +171,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
             ArmLift(1.0, 10, 1.0);
-            encoderDrive(0.25, 1, -1, 1.0);
+            encoderDrive(0.25, 1, -1, 0.7);
             encoderDrive(0.25, 10, 10, 1.5);
 
             // Path Complete
