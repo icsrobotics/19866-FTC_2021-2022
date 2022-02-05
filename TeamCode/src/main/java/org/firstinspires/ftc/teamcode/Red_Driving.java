@@ -27,7 +27,7 @@ public class Red_Driving extends LinearOpMode {
     DcMotor rightMotor;
     DcMotor armMotor;
     DcMotor flippyMotor;
-    Servo carasouelServo;
+    DcMotor carasouelServo;
 
     @Override public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -41,9 +41,9 @@ public class Red_Driving extends LinearOpMode {
 
         flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector (i wonder if this will show up)
 
-        carasouelServo = hardwareMap.servo.get("Carasouel_Servo"); //initializing carousel
-        carasouelServo.setPosition(0.5);
-        carasouelServo.setDirection(Servo.Direction.REVERSE);
+        carasouelServo = hardwareMap.dcMotor.get("Carasouel_Servo"); //initializing carousel
+        carasouelServo.setPower(0.5);
+        carasouelServo.setDirection(DcMotorSimple.Direction.REVERSE);
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = dashboard.getTelemetry();
@@ -79,12 +79,17 @@ public class Red_Driving extends LinearOpMode {
             }
 
             // CODE FOR SERVO
+//            if (gamepad2.x) {
+//                carasouelServo.setPosition(1.0);
+//
+//            } else {
+//                carasouelServo.setPosition(0.5);
+//
+//            }
             if (gamepad2.x) {
-                carasouelServo.setPosition(1.0);
-
-            } else {
-                carasouelServo.setPosition(0.5);
-
+                carasouelServo.setPower(1.0);
+            } else if (gamepad1.x) {
+                carasouelServo.setPower(-1.0);
             }
         }
     }
