@@ -134,7 +134,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
-            ArmLift(0.5, 10, 2.5);
+            ArmLift(0.5, 10, 3.0);
             encoderDrive(0.3, 5, 5, 0.3);
             sleep(50);
             flippyMotor.setPower(1.0);

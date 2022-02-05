@@ -134,7 +134,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
-            ArmLift(0.5, 10, 2.5);
+            ArmLift(0.5, 10, 3.0);
             encoderDrive(0.3, 5, 5, 0.3);
             sleep(50);
             flippyMotor.setPower(1.0);
@@ -148,7 +148,6 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.15, 10, 10, 2.3);
 
             return;
-
         } else if (elementPosition == 1) /* LEFT - lowest level */ {
 
             // go to shipping hub
@@ -169,8 +168,8 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.2, -2, 2, 0.75);
             ArmLift(1.0, 10, 0.5);
             encoderDrive(0.15, 10, 10, 2.3);
-            return;
 
+            return;
         } else {
             telemetry.addData("Shipping Element", "Unavailable");
             telemetry.update();

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.RedAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -25,6 +26,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 @Autonomous(name = "Red Side (Near Carasouel) Without Going To Warehouse", group = "Linear Opmode")
+@Disabled
 public class Auto_Red_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
