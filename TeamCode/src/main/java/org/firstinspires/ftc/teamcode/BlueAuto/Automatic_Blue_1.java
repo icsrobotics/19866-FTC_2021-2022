@@ -108,6 +108,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
+            sleep(3000);
             encoderDrive(0.25, -1, 1, 0.546);
             encoderDrive(0.135, 5, 5, 0.85);
 
@@ -123,13 +124,14 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.3,-1, -1, 0.5);
             encoderDrive(0.2, -2, 2, 0.75);
             ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.1, 10, 10, 2.3);
+            encoderDrive(0.1, 10, 10, 1.7);
 
             return;
         } else if (elementPosition == 2) /* CENTER */ {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
+            sleep(3000);
             encoderDrive(0.25, -1, 1, 0.544);
             encoderDrive(0.135, 5, 5, 0.85);
 
@@ -145,13 +147,14 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.3,-1, -1, 0.5);
             encoderDrive(0.2, -2, 2, 0.75);
             ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.1, 10, 10, 2.3);
+            encoderDrive(0.1, 10, 10, 1.7);
 
             return;
         } else if (elementPosition == 1) /* LEFT - lowest level */ {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
+            sleep(3000);
             encoderDrive(0.25, -1, 1, 0.546);
             encoderDrive(0.135, 5, 5, 0.85);
 
@@ -167,7 +170,7 @@ public class Automatic_Blue_1 extends LinearOpMode {
             encoderDrive(0.3,-1, -1, 0.5);
             encoderDrive(0.2, -2, 2, 0.75);
             ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.1, 10, 10, 2.3);
+            encoderDrive(0.1, 10, 10, 1.7);
 
             return;
         } else {

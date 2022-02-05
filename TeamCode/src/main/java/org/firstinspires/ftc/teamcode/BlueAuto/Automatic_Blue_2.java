@@ -130,7 +130,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
-            encoderDrive(0.25, 1, -1, 0.546);
+            encoderDrive(0.25, 1, -1, 0.54);
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
@@ -154,10 +154,10 @@ public class Automatic_Blue_2 extends LinearOpMode {
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
             encoderDrive(0.25, 1, -1, 0.546);
-            encoderDrive(0.135, 5, 5, 0.85);
+            encoderDrive(0.135, 5, 5, 0.843);
 
             // lift arm
-            ArmLift(0.5, 10, 2.7);
+            ArmLift(0.5, 10, 1.7);
             encoderDrive(0.3, 5, 5, 0.3);
             sleep(50);
             flippyMotor.setPower(1.0);
@@ -166,7 +166,7 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
+            encoderDrive(0.2, -2, 2, 0.65);
             ArmLift(1.0, 10, 0.5);
             encoderDrive(0.1, 10, 10, 0.5);
 
