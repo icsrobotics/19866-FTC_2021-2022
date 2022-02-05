@@ -120,9 +120,9 @@ public class Automatic_Blue_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
+            encoderDrive(0.2, -2, 2, 1.5);
             ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
+            encoderDrive(0.15, 10, 10, 0.5);
 
             return;
 
