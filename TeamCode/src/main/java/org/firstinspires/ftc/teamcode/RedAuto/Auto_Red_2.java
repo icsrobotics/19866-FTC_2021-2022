@@ -25,7 +25,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 @Autonomous(name = "Red Side (Near Warehouse)", group = "Linear Opmode")
-public class Automatic_Red_2 extends LinearOpMode {
+public class Auto_Red_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
@@ -121,9 +121,6 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
 
             return;
         } else if (elementPosition == 2) /* CENTER */ {
@@ -143,9 +140,6 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
 
             return;
 
@@ -166,9 +160,7 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
+
             return;
 
         } else {

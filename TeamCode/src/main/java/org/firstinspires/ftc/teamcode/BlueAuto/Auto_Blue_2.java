@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RedAuto;
+package org.firstinspires.ftc.teamcode.BlueAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -24,8 +24,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Red Side (Near Warehouse)", group = "Linear Opmode")
-public class Automatic_Red_2 extends LinearOpMode {
+@Autonomous(name = "Blue Side (Near Warehouse) Without Going To Warehouse", group = "Linear Opmode")
+public class Auto_Blue_2 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
@@ -53,8 +53,7 @@ public class Automatic_Red_2 extends LinearOpMode {
     public void runOpMode() {
         // initializing all camera elements
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId",
-                "id", hardwareMap.appContext.getPackageName());
+                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class,
                 "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -108,7 +107,7 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
-            encoderDrive(0.25, -1, 1, 0.65);
+            encoderDrive(0.25, 1, -1, 0.65);
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
@@ -121,16 +120,14 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
 
             return;
+
         } else if (elementPosition == 2) /* CENTER */ {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
-            encoderDrive(0.25, -1, 1, 0.65);
+            encoderDrive(0.25, 1, -1, 0.65);
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
@@ -143,9 +140,6 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
 
             return;
 
@@ -153,7 +147,7 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to shipping hub
             encoderDrive(0.15, 5, 5, 0.5);
-            encoderDrive(0.25, -1, 1, 0.65);
+            encoderDrive(0.25, 1, -1, 0.65);
             encoderDrive(0.135, 5, 5, 0.85);
 
             // lift arm
@@ -166,9 +160,7 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // go to warehouse
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
+
             return;
 
         } else {
@@ -409,7 +401,7 @@ public class Automatic_Red_2 extends LinearOpMode {
 
             // Turn On RUN_TO_POSITION
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(Math.abs(speed + 0.07));
+            armMotor.setPower(Math.abs(speed + 0.1));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && armMotor.isBusy()) {
                 // Display it for the driver.
@@ -442,7 +434,7 @@ public class Automatic_Red_2 extends LinearOpMode {
             leftMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
+                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
                 telemetry.update();
             }
             // Stop all motion;
@@ -469,7 +461,7 @@ public class Automatic_Red_2 extends LinearOpMode {
             rightMotor.setPower(Math.abs(speed));
 
             while (opModeIsActive() && (runtime.seconds() < timeout) && (leftMotor.isBusy() || rightMotor.isBusy())) {
-                telemetry.addData("From ICS Robotics", "JUST RIGHT!!");
+                telemetry.addData("From ICS Robotics", "JUST LEFT!!");
                 telemetry.update();
             }
             // Stop all motion;

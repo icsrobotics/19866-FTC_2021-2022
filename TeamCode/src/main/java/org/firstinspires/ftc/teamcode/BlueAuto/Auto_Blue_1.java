@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RedAuto;
+package org.firstinspires.ftc.teamcode.BlueAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -24,8 +24,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
-@Autonomous(name = "Red Side (Near Warehouse)", group = "Linear Opmode")
-public class Automatic_Red_2 extends LinearOpMode {
+@Autonomous(name = "Blue Side (Near Carousel) Without Going To Warehouse", group = "Linear Opmode")
+public class Auto_Blue_1 extends LinearOpMode {
     // Camera variables
     private OpenCvCamera webcam;
     SkystoneDeterminationPipeline pipeline;
@@ -104,6 +104,25 @@ public class Automatic_Red_2 extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        // go to shipping hub
+        encoderDrive(0.15, 5, 5, 0.5);
+        encoderDrive(0.25, -1, 1, 0.65);
+        encoderDrive(0.135, 5, 5, 0.85);
+
+        // lift arm
+        ArmLift(0.5, 10, 3.3);
+        encoderDrive(0.3, 5, 5, 0.3);
+        sleep(50);
+        flippyMotor.setPower(1.0);
+        sleep(3000);
+        flippyMotor.setPower(0.0);
+
+        // go to warehouse
+        encoderDrive(0.3,-1, -1, 0.5);
+        encoderDrive(0.2, -2, 2, 0.75);
+        ArmLift(1.0, 10, 0.5);
+        encoderDrive(0.15, 10, 10, 2.3);
+
         if (elementPosition == 3) /* RIGHT - highest level */ {
 
             // go to shipping hub
@@ -119,11 +138,8 @@ public class Automatic_Red_2 extends LinearOpMode {
             sleep(3000);
             flippyMotor.setPower(0.0);
 
-            // go to warehouse
+            // back up
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
 
             return;
         } else if (elementPosition == 2) /* CENTER */ {
@@ -141,7 +157,7 @@ public class Automatic_Red_2 extends LinearOpMode {
             sleep(3000);
             flippyMotor.setPower(0.0);
 
-            // go to warehouse
+            // back up
             encoderDrive(0.3,-1, -1, 0.5);
             encoderDrive(0.2, -2, 2, 0.75);
             ArmLift(1.0, 10, 0.5);
@@ -164,11 +180,9 @@ public class Automatic_Red_2 extends LinearOpMode {
             sleep(3000);
             flippyMotor.setPower(0.0);
 
-            // go to warehouse
+            // back up
             encoderDrive(0.3,-1, -1, 0.5);
-            encoderDrive(0.2, -2, 2, 0.75);
-            ArmLift(1.0, 10, 0.5);
-            encoderDrive(0.15, 10, 10, 2.3);
+
             return;
 
         } else {
