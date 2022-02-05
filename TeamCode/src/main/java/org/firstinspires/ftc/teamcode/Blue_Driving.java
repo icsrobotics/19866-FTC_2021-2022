@@ -80,7 +80,6 @@ public class Blue_Driving extends LinearOpMode {
 
             // CODE FOR SERVO
             if (gamepad2.x) {
-
                 carasouelServo.setPosition(0.0);
 
             } else {
