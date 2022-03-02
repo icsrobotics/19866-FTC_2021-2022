@@ -17,7 +17,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Config
 @TeleOp(name = "Blue Side Driving", group = "Linear Opmode")
-public class Blue_Driving extends LinearOpMode {
+public class Driving extends LinearOpMode {
 
     // Declare OpMode members.
     private final ElapsedTime runtime = new ElapsedTime();
@@ -67,13 +67,13 @@ public class Blue_Driving extends LinearOpMode {
             //CODE FOR END EFFECTOR
             flippyMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-            if (gamepad2.a) {
+            if (gamepad2.right_stick_y > 0.5) {
                 flippyMotor.setPower(1.0);
 
-            } else if(gamepad2.y){
+            } else if(gamepad2.right_stick_y < 0.5){
                 flippyMotor.setPower(-1.0);
 
-            } else if (gamepad2.b) {
+            } else if (gamepad2.right_stick_y == 0.5) {
                 flippyMotor.setPower(0);
 
             }
@@ -82,9 +82,11 @@ public class Blue_Driving extends LinearOpMode {
             if (gamepad2.x) {
                 carasouelServo.setPosition(0.0);
 
+            } else if (gamepad2.a) {
+                carasouelServo.setPosition(1.0);
+
             } else {
                 carasouelServo.setPosition(0.5);
-
             }
         }
     }
