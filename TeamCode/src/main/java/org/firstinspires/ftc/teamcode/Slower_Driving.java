@@ -17,27 +17,22 @@ public class Slower_Driving extends LinearOpMode {
     private final ElapsedTime runtime = new ElapsedTime();
 
     // Motor variables
-    DcMotor leftMotor;
-    DcMotor rightMotor;
-    DcMotor armMotor;
-    DcMotor flippyMotor;
-    Servo carasouelServo;
+    DcMotor leftFront;
+    DcMotor backLeft;
+    DcMotor frontRight;
+    DcMotor backRight;
+    Servo armMotor;
 
     @Override public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        leftMotor = hardwareMap.dcMotor.get("Left_Motor"); // initializing left motor
-        rightMotor = hardwareMap.dcMotor.get("Right_Motor"); // initializing right motor
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront = hardwareMap.dcMotor.get("Front_Left");
+        backLeft = hardwareMap.dcMotor.get("Back_Right");
+        frontRight = hardwareMap.dcMotor.get("Front_Right");
+        backRight = hardwareMap.dcMotor.get("Back_Left");
 
-        armMotor = hardwareMap.dcMotor.get("Arm_Motor"); // initializing arm motor
-
-        flippyMotor = hardwareMap.dcMotor.get("Flippy_Motor"); //initializing end effector (i wonder if this will show up)
-
-        carasouelServo = hardwareMap.servo.get("Carasouel_Servo"); //initializing carousel
-        carasouelServo.setPosition(0.5);
-        carasouelServo.setDirection(Servo.Direction.REVERSE);
+        armMotor = hardwareMap.servo.get("Arm_Motor"); // initializing arm motor
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = dashboard.getTelemetry();
@@ -51,13 +46,20 @@ public class Slower_Driving extends LinearOpMode {
             telemetry.update();
 
             //TANK MODE FOR DRIVING
-            rightMotor.setPower(-gamepad1.left_stick_y * 0.5);
-            leftMotor.setPower(-gamepad1.right_stick_y * 0.5);
+            leftFront.setPower(gamepad1.left_stick_y * 0.5);
+            backLeft.setPower(gamepad1.left_stick_y * 0.5);
+
+            frontRight.setPower(-gamepad1.right_stick_y * 0.5);
+            backRight.setPower(-gamepad1.right_stick_y * 0.5);
 
             //CODE FOR ARM
-            armMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-            armMotor.setPower(0.7 * gamepad2.left_stick_y);
-
+            if (gamepad2.dpad_up) {
+                armMotor.setPosition(1.0);
+            } else if (gamepad2.dpad_down){
+                armMotor.setPosition(0.0);
+            } else{
+                armMotor.setPosition(0.5);
+            }
         }
     }
 }
