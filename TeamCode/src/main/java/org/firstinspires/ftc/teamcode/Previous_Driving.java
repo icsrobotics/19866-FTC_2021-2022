@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,8 +11,9 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 
 @Config
-@TeleOp(name = "Driving ඞ", group = "Linear Opmode")
-public class Slower_Driving extends LinearOpMode {
+@TeleOp(name = "Driving For Previous Wheel Config ඞ", group = "Linear Opmode")
+@Disabled
+public class Previous_Driving extends LinearOpMode {
 
     // Declare OpMode members.
     private final ElapsedTime runtime = new ElapsedTime();
@@ -52,6 +54,7 @@ public class Slower_Driving extends LinearOpMode {
             frontRight.setPower(-gamepad1.right_stick_y * 0.5);
             backRight.setPower(-gamepad1.right_stick_y * 0.5);
 
+            }
             //CODE FOR ARM
             if (gamepad2.dpad_up) {
                 armMotor.setPosition(1.0);
@@ -62,4 +65,3 @@ public class Slower_Driving extends LinearOpMode {
             }
         }
     }
-}

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
-@TeleOp(name = "ඞ", group = "Linear Opmode")
+@TeleOp(name = "Mecanum Driving ඞ", group = "Linear Opmode")
 
 public class Mecanum_Driving extends LinearOpMode {
 
@@ -19,9 +19,9 @@ public class Mecanum_Driving extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         DcMotor leftFront = hardwareMap.dcMotor.get("Front_Left");
-        DcMotor backLeft = hardwareMap.dcMotor.get("Back_Left");
+        DcMotor backLeft = hardwareMap.dcMotor.get("Back_Right");
         DcMotor frontRight = hardwareMap.dcMotor.get("Front_Right");
-        DcMotor backRight = hardwareMap.dcMotor.get("Back_Right");
+        DcMotor backRight = hardwareMap.dcMotor.get("Back_Left");
 
 
         // Reverse the right side motors
@@ -34,38 +34,25 @@ public class Mecanum_Driving extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            servo = hardwareMap.servo.get("Carasouel_Servo"); //initializing carousel
-            servo.setPosition(0.5);
-            servo.setDirection(Servo.Direction.REVERSE);
 
-            double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
-            double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
-            double rightX = -gamepad1.right_stick_x;
-            final double v1 = r * Math.cos(robotAngle) + rightX;
-            final double v2 = r * Math.sin(robotAngle) - rightX;
-            final double v3 = r * Math.sin(robotAngle) + rightX;
-            final double v4 = r * Math.cos(robotAngle) - rightX;
+            while (opModeIsActive()) {
+                double y = -gamepad1.left_stick_y; // Remember, this is reversed!
+                double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
+                double rx = gamepad1.right_stick_x;
 
+                double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+                double frontLeftPower = (y + x + rx) / denominator;
+                double backLeftPower = (y - x + rx) / denominator;
+                double frontRightPower = (y - x - rx) / denominator;
+                double backRightPower = (y + x - rx) / denominator;
 
-            leftFront.setPower(v1);
-            frontRight.setPower(v2);
-            backLeft.setPower(v3);
-            backRight.setPower(v4);
-
-            // Strafe left
-            leftFront.setPower(-gamepad1.left_trigger);
-            backRight.setPower(-gamepad1.left_trigger);
-
-            frontRight.setPower(gamepad1.left_trigger * 0.6);
-            backLeft.setPower(gamepad1.left_trigger * 0.6);
-
-            // Strafe right
-            leftFront.setPower(gamepad1.right_trigger * 0.6);
-            backRight.setPower(gamepad1.right_trigger * 0.6);
-
-            frontRight.setPower(-gamepad1.right_trigger);
-            backLeft.setPower(-gamepad1.right_trigger);
-
+                leftFront.setPower(frontLeftPower);
+                backLeft.setPower(backLeftPower);
+                frontRight.setPower(frontRightPower);
+                backRight.setPower(backRightPower);
+            }
+        }
+    }
         }
     }
 }
