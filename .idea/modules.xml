@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ftc_new.iml" filepath="$PROJECT_DIR$/.idea/modules/ftc_new.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.main.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/ftc_new.FtcRobotController.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.main.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/ftc_new.TeamCode.unitTest.iml" />
     </modules>
   </component>
 </project>
