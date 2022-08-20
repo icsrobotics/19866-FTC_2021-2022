@@ -12,7 +12,7 @@ Owner of repository is @programming-programmer.
     - Program: "$ModuleSdkPath$/platform-tools/adb"
     - Arguments: "connect 192.168.43.1:5555"
     - Working Directory: "$ProjectFileDir$"
-- [FTC Robot Controller GitHub wiki Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
+- [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
 - [FTC Dashboard](https://acmerobotics.github.io/ftc-dashboard/gettingstarted)
   - When connected to Control Hub's Wifi go to: "192.168.43.1:8080/dash"
 - [Connect to Robot Controller](https://docs.revrobotics.com/duo-control/control-hub-gs/connect-to-the-control-hub-robot-control-console#web-browser)
