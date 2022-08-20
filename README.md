@@ -2,7 +2,7 @@
 This is the programming repository of FTC Team #19866. This repository contains all Autonomous and TeleOp Opmodes. 
 Owner of repository is @programming-programmer. 
 
-# Important Notes
+# Additional Notes
 - New Season Coming up - Plan to Update
 - Connect to Control Hub in Android Studio via wifi
   - Go to Settings > External Tools > Tools > Press "+" button:
