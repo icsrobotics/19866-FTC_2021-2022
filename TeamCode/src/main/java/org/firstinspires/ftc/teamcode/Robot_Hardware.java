@@ -38,10 +38,10 @@ public class Robot_Hardware {
         // Save reference to Hardware map
         hwMap = ahwMap;
 
-        frontLeft = hardwareMap.dcMotor.get("Front_Left");
-        backLeft = hardwareMap.dcMotor.get("Back_Right");
-        frontRight = hardwareMap.dcMotor.get("Front_Right");
-        backRight = hardwareMap.dcMotor.get("Back_Left");
+        frontLeft = hwMap.get(DcMotor.class, "Front_Left");
+        backLeft = hwMap.get(DcMotor.class, "Back_Right");
+        frontRight = hwMap.get(DcMotor.class, "Front_Right");
+        backRight = hwMap.get(DcMotor.class, "Back_Left");
 
         // Reverse motors
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -61,7 +61,7 @@ public class Robot_Hardware {
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        // INTIIALIZE SERVOS
+        // INTIIALIZE SERVOS HERE
 
         // CODE: https://github.com/AlessioToniolo/FTC-PID/blob/master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/MaristBaseRobot2019_Quad.java
         //if (opModeIsActive()) {
