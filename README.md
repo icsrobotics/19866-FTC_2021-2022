@@ -18,7 +18,13 @@ Owner of repository is @programming-programmer.
     - Arguments: "connect 192.168.43.1:5555"
     - Working Directory: "$ProjectFileDir$"
 <details>
-<summary>How do I dropdown?</summary>
+<summary>- Connect to Control Hub in Android Studio via wifi</summary>
 <br>
-This is how you dropdown.
+  - Go to Settings > External Tools > Tools > Press "+" button:
+    - Name: "Control Hub"
+    - Group: "External tools"
+    - Description: "N/A"
+    - Program: "$ModuleSdkPath$/platform-tools/adb"
+    - Arguments: "connect 192.168.43.1:5555"
+    - Working Directory: "$ProjectFileDir$"
 </details>
