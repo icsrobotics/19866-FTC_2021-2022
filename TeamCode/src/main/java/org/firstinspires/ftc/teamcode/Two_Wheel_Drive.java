@@ -13,11 +13,16 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 @Config
 @TeleOp(name = "Two Wheel Drive", group = "Linear Opmode")
 public class Two_Wheel_Drive extends LinearOpMode {
-    // Port 0
-    DcMotor leftMotor = hardwareMap.dcMotor.get("Front_Right");
+    // 0 -arm, 1 - end, 2 - left, 3 - right
+    // Port 0 - left
+    DcMotor leftMotor = hardwareMap.dcMotor.get("Back_Left");
 
-    //Port 1
-    DcMotor rightMotor = hardwareMap.dcMotor.get("Front_Left");
+    //Port 1 - right
+    DcMotor rightMotor = hardwareMap.dcMotor.get("Back_Right");
+
+    DcMotor armMotor = hardwareMap.dcMotor.get("Front_Right");
+
+    DcMotor endMotor = hardwareMap.dcMotor.get("Front_Left");
 
     @Override public void runOpMode() {
         FtcDashboard dashboard = FtcDashboard.getInstance();
@@ -44,6 +49,8 @@ public class Two_Wheel_Drive extends LinearOpMode {
             leftMotor.setPower(left);
             rightMotor.setPower(right);
 
+            armMotor.setPower(gamepad2.left_stick_y);
+            endMotor.setPower(gamepad2.right_stick_y);
         }
     }
 }
