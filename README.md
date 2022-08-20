@@ -17,3 +17,8 @@ Owner of repository is @programming-programmer.
     - Program: "$ModuleSdkPath$/platform-tools/adb"
     - Arguments: "connect 192.168.43.1:5555"
     - Working Directory: "$ProjectFileDir$"
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
