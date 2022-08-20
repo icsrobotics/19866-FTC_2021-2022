@@ -17,14 +17,5 @@ Owner of repository is @programming-programmer.
     - Program: "$ModuleSdkPath$/platform-tools/adb"
     - Arguments: "connect 192.168.43.1:5555"
     - Working Directory: "$ProjectFileDir$"
-<details>
-<summary>- Connect to Control Hub in Android Studio via wifi</summary>
-<br>
-  - Go to Settings > External Tools > Tools > Press "+" button:
-    - Name: "Control Hub"
-    - Group: "External tools"
-    - Description: "N/A"
-    - Program: "$ModuleSdkPath$/platform-tools/adb"
-    - Arguments: "connect 192.168.43.1:5555"
-    - Working Directory: "$ProjectFileDir$"
-</details>
+- [Markdown Cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md#TOP)
+- [Emoji Cheatsheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
