@@ -3,15 +3,29 @@ This is the programming repository of FTC Team #19866. This repository contains 
 Owner of repository is @programming-programmer. 
 
 # How to clone this repository
-  - First Download Android studio [here](https://developer.android.com/studio)
-  - If you have Github Account follow this
-    - No SSH Key set up / Don't know what that is
-      - Enter the terminal (depends on your OS)
-      - Navigate to StudioProjects folder (type "cd StudioProject" in most instances)
-      - type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)
-      - In Android Studio, select open project and this repository should be there
-  - If you **do not* have a GitHub account follow this
-  
+  - **First Download Android studio [here](https://developer.android.com/studio)**
+  - <details>
+    <summary>If you have Github Account follow this</summary>
+        No SSH Key set up / Don't know what that is:
+    <ul>
+      <li>Enter the terminal (depends on your OS)</li>
+      <li>Navigate to StudioProjects folder (type "cd StudioProject" in most instances)</li>
+      <li>type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
+      <li>In Android Studio, select open project and this repository should be there</li>
+    </ul>
+  </details>
+
+  - <details><summary>If you **do not** have a GitHub account follow this</summary>
+  <ul>
+    <li>Go to Code</li>
+    <li>download ZIP folder</li>
+    <li>type "mv ftc_new-master.zip" ~/StudioProjects</li>
+    <li>type "cd ~/StudioProjects"</li>
+    <li>type "unzip ftc_new-master.zip"</li>
+    <li>In Android Studio, select open project and this repository should be there</li>
+  </ul>
+</details>
+
 ## Additional Notes
 - New Season Coming up - Plan to Update
 
@@ -22,7 +36,7 @@ Owner of repository is @programming-programmer.
 - [Connect to Robot Controller](https://docs.revrobotics.com/duo-control/control-hub-gs/connect-to-the-control-hub-robot-control-console#web-browser)
   - When connected to Control Hub's Wifi go to: "192.168.43.1:8080" in a web browser
   
-<details>
+- <details>
   <summary>Connect to Control Hub in Android Studio via wifi</summary>
     Go to Settings > External Tools > Tools > Press "+" button:
   <ul>
