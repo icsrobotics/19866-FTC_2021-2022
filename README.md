@@ -5,26 +5,22 @@ Owner of repository is @programming-programmer.
 # How to clone this repository
   - **If Android Studio is not installed, install it [here](https://developer.android.com/studio)**
   - <details>
-    <summary>If you have a Github account and git is set up:</summary>
-        <b>If no SSH Key is set up / You don't know what that is:</b>
-    <ul>
+    <summary><b>If you have a Github account and git is set up:</b></summary>
+  
       <li>Open the terminal (depends on your OS)</li>
-   
       <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
       <pre>$ cd ~/StudioProjects</pre>
-      
+        <b>If no SSH Key is set up / You don't know what that is:</b>
+    <ul>
       <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
       <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
       <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
       <li>Now you can start coding! :+1:</li>
     </ul>
+  
 
       <b>SSH Key set up:</b>
     <ul>
-      <li>Open the terminal (depends on your OS)</li>
-      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
-      <pre>$ cd ~/StudioProjects</pre>
-      
       <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
       <pre>$ git clone git@github.com:programming-programmer/ftc_new.git</pre>
       
@@ -34,7 +30,7 @@ Owner of repository is @programming-programmer.
   </details>
 
   - <details>
-    <summary>If you <b>do not</b> have a GitHub account follow this</summary>
+    <summary><b>If you <i>do not</i> have a GitHub account follow this</b></summary>
     <ul>
       <li>Go to Code</li>
       <li>download ZIP folder</li>
@@ -70,7 +66,7 @@ Owner of repository is @programming-programmer.
 [Emoji Cheatsheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 - <details>
-  <summary>[Connect to Control Hub in Android Studio via wifi](https://www.reddit.com/r/FTC/comments/ip96x4/how_can_i_wireless_upload_code_to_control_hub/)</summary>
+  <summary>Connect to Control Hub in Android Studio via wifi</summary>
     <b>Go to Settings > External Tools > Tools > Press "+" button:</b>
   <ul>
     <li>Name: "Control Hub"</li>
