@@ -70,7 +70,7 @@ Owner of repository is @programming-programmer.
 [Emoji Cheatsheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 - <details>
-  <summary>Connect to Control Hub in Android Studio via wifi</summary>
+  <summary>[Connect to Control Hub in Android Studio via wifi](https://www.reddit.com/r/FTC/comments/ip96x4/how_can_i_wireless_upload_code_to_control_hub/)</summary>
     <b>Go to Settings > External Tools > Tools > Press "+" button:</b>
   <ul>
     <li>Name: "Control Hub"</li>
