@@ -4,40 +4,45 @@ Owner of repository is @programming-programmer.
 
 # How to clone this repository
   - **If Android Studio is not installed, install it [here](https://developer.android.com/studio)**
+  
   - <details>
     <summary><b>If you have a Github account and git is set up:</b></summary>
-  
-      <li>Open the terminal (depends on your OS)</li>
-      <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
-      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
-      <pre>$ cd ~/StudioProjects</pre>
-      <b>No SSH Key is set up / You don't know what that is:</b>
-    <ul>
-      <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
-      <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
-      <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
-      <li>Now you can start coding! :+1:</li>
-    </ul>
-  
-
-      <b>SSH Key set up:</b>
-    <ul>
-      <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
-      <pre>$ git clone git@github.com:programming-programmer/ftc_new.git</pre>
+        <li>Open the terminal (depends on your OS)</li>
+        <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
+        
+        <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
+        <pre>$ cd ~/StudioProjects</pre>
       
-      <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
-      <li>Now you can start coding! :+1:</li>
-    </ul>
+      <b>No SSH Key is set up / You don't know what that is:</b> <ul>
+        <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
+        <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
+        
+        <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
+        <li>Now you can start coding! :+1:</li>
+      </ul>
+      
+      <b>SSH Key set up:</b><ul>
+        <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
+        <pre>$ git clone git@github.com:programming-programmer/ftc_new.git</pre>
+
+        <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
+        <li>Now you can start coding! :+1:</li>
+      </ul>
   </details>
 
+
+
   - <details>
-    <summary><b>If you <i>do not</i> have a GitHub account:</b></summary>
-    <ul>
+    <summary><b>If you <i>do not</i> have a GitHub account:</b></summary><ul>
       <li>Go to Code</li>
       <img src = "https://github.com/programming-programmer/ftc_new/blob/master/enter.png" width = "800">
+      
       <li>download ZIP folder</li>
       <img src = "https://github.com/programming-programmer/ftc_new/blob/master/zip.png" width = "800">
+      
       <li>Open the terminal (depends on your OS)</li>
+      <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
+      
       <li>In terminal, type "mv ftc_new-master.zip ~/StudioProjects" (this moves the zip file to Studio Projects)</li>
       <pre>$ mv ftc_new-master.zip ~/StudioProjects</pre>
       
@@ -71,13 +76,15 @@ Owner of repository is @programming-programmer.
 
 - <details>
   <summary>Connect to Control Hub in Android Studio via wifi</summary>
-    <b>Go to Settings > External Tools > Tools > Press "+" button:</b>
-  <ul>
-    <li>Name: "Control Hub"</li>
-    <li>Group: "External tools"</li>
-    <li>Description: "N/A"</li>
-    <li>Program: "$ModuleSdkPath$/platform-tools/adb"</li>
-    <li>Arguments: "connect 192.168.43.1:5555"</li>
-    <li>Working Directory: "$ProjectFileDir$"</li>
-  </ul>
+    <ul>
+    <li><b>Go to Settings > External Tools > Tools > Press "+" button:</b></li>
+    </ul>
+      <ul>
+        <li>Name: "Control Hub"</li>
+        <li>Group: "External tools"</li>
+        <li>Description: "N/A"</li>
+        <li>Program: "$ModuleSdkPath$/platform-tools/adb"</li>
+        <li>Arguments: "connect 192.168.43.1:5555"</li>
+        <li>Working Directory: "$ProjectFileDir$"</li>
+      </ul>
 </details>
