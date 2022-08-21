@@ -8,9 +8,10 @@ Owner of repository is @programming-programmer.
     <summary><b>If you have a Github account and git is set up:</b></summary>
   
       <li>Open the terminal (depends on your OS)</li>
+      <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
       <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
       <pre>$ cd ~/StudioProjects</pre>
-        <b>If no SSH Key is set up / You don't know what that is:</b>
+      <b>If no SSH Key is set up / You don't know what that is:</b>
     <ul>
       <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
       <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
@@ -30,10 +31,12 @@ Owner of repository is @programming-programmer.
   </details>
 
   - <details>
-    <summary><b>If you <i>do not</i> have a GitHub account follow this</b></summary>
+    <summary><b>If you <i>do not</i> have a GitHub account:</b></summary>
     <ul>
       <li>Go to Code</li>
+      <img src = "https://github.com/programming-programmer/ftc_new/blob/master/enter.png" width = "800">
       <li>download ZIP folder</li>
+      <img src = "https://github.com/programming-programmer/ftc_new/blob/master/zip.png" width = "800">
       <li>Open the terminal (depends on your OS)</li>
       <li>In terminal, type "mv ftc_new-master.zip ~/StudioProjects" (this moves the zip file to Studio Projects)</li>
       <pre>$ mv ftc_new-master.zip ~/StudioProjects</pre>
