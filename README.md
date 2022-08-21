@@ -2,6 +2,16 @@
 This is the programming repository of FTC Team #19866. This repository contains all Autonomous and TeleOp Opmodes. 
 Owner of repository is @programming-programmer. 
 
+# How to clone this repository
+  - First Download Android studio [here](https://developer.android.com/studio)
+  - If you have Github Account follow this
+    - No SSH Key set up / Don't know what that is
+      - Enter the terminal (depends on your OS)
+      - Navigate to StudioProjects folder (type "cd StudioProject" in most instances)
+      - type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)
+      - In Android Studio, select open project and this repository should be there
+  - If you **do not* have a GitHub account follow this
+  
 ## Additional Notes
 - New Season Coming up - Plan to Update
 
