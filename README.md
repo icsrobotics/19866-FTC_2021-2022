@@ -3,22 +3,25 @@ This is the programming repository of FTC Team #19866. This repository contains 
 Owner of repository is @programming-programmer. 
 
 # How to clone this repository
-  - **First Download Android studio [here](https://developer.android.com/studio)**
+  - **If Android Studio is not installed, install it [here](https://developer.android.com/studio)**
   - <details>
-    <summary>If you have Github Account follow this</summary>
-        <b>No SSH Key set up / Don't know what that is:</b>
+    <summary>If you have a Github account and git is set up:</summary>
+        <b>If no SSH Key is set up / You don't know what that is:</b>
     <ul>
-      <li>Enter the terminal (depends on your OS)</li>
-      <li>Navigate to StudioProjects folder (type "cd StudioProject" in most instances)</li>
-      <li>type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
-      <li>In Android Studio, select open project and this repository should be there</li>
+      <li>Open the terminal (depends on your OS)</li>
+      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located(type "cd StudioProject" in most instances)</li>
+      <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
+      <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
+      <li>Now you can start coding!</li>
     </ul>
+
          <b>SSH Key set up:</b>
     <ul>
-      <li>Enter the terminal (depends on your OS)</li>
-      <li>Navigate to StudioProjects folder (type "cd StudioProject" in most instances)</li>
-      <li>type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don'thave an ssh key set up follow directions under No SSH Key set up)</li>
-      <li>In Android Studio, select open project and this repository should be there</li>
+      <li>Open the terminal (depends on your OS)</li>
+      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located(type "cd StudioProject" in most instances)</li>
+      <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
+      <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
+      <li>Now you can start coding!</li>
     </ul>
   </details>
 
@@ -27,15 +30,19 @@ Owner of repository is @programming-programmer.
     <ul>
       <li>Go to Code</li>
       <li>download ZIP folder</li>
-      <li>type "mv ftc_new-master.zip ~/StudioProjects"</li>
-      <li>type "cd ~/StudioProjects"</li>
-      <li>type "unzip ftc_new-master.zip"</li>
-      <li>In Android Studio, select open project and this repository should be there</li>
+      <li>Open the terminal (depends on your OS)</li>
+      <li>In terminal, type "mv ftc_new-master.zip ~/StudioProjects" (this moves the zip file to Studio Projects)</li>
+      <li>In terminal, type "cd ~/StudioProjects" (this navigates to StudioProjects)</li>
+      <li>type "unzip ftc_new-master.zip" (pretty self-explanatory)</li>
+      <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
+      <li>Now you can start coding!</li>
     </ul>
 </details>
 
 ## Additional Notes
 - New Season Coming up - Plan to Update
+- Common Errors:
+  - When building the project via Gradle, the computer has to be connected to the actual internet. (This should not be a common error and I hate that it is)
 
 ## Miscellanous
 - [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
@@ -43,10 +50,14 @@ Owner of repository is @programming-programmer.
   - When connected to Control Hub's Wifi go to: "192.168.43.1:8080/dash"
 - [Connect to Robot Controller](https://docs.revrobotics.com/duo-control/control-hub-gs/connect-to-the-control-hub-robot-control-console#web-browser)
   - When connected to Control Hub's Wifi go to: "192.168.43.1:8080" in a web browser
-  
+
+- [Markdown Cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md#TOP) | 
+[Advanced Markdown Cheatsheet](https://gist.github.com/apaskulin/1ad686e42c7165cb9c22f9fe1e389558) | 
+[Emoji Cheatsheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
+
 - <details>
   <summary>Connect to Control Hub in Android Studio via wifi</summary>
-    Go to Settings > External Tools > Tools > Press "+" button:
+    <b>Go to Settings > External Tools > Tools > Press "+" button:</b>
   <ul>
     <li>Name: "Control Hub"</li>
     <li>Group: "External tools"</li>
@@ -56,7 +67,3 @@ Owner of repository is @programming-programmer.
     <li>Working Directory: "$ProjectFileDir$"</li>
   </ul>
 </details>
-
-- [Markdown Cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md#TOP) | 
-[Advanced Markdown Cheatsheet](https://gist.github.com/apaskulin/1ad686e42c7165cb9c22f9fe1e389558) | 
-[Emoji Cheatsheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
