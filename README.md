@@ -9,19 +9,27 @@ Owner of repository is @programming-programmer.
         <b>If no SSH Key is set up / You don't know what that is:</b>
     <ul>
       <li>Open the terminal (depends on your OS)</li>
-      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located(type "cd StudioProject" in most instances)</li>
+   
+      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
+      <pre>$ cd ~/StudioProjects</pre>
+      
       <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
+      <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
       <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
-      <li>Now you can start coding!</li>
+      <li>Now you can start coding! :+1:</li>
     </ul>
 
       <b>SSH Key set up:</b>
     <ul>
       <li>Open the terminal (depends on your OS)</li>
-      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located(type "cd StudioProject" in most instances)</li>
+      <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
+      <pre>$ cd ~/StudioProjects</pre>
+      
       <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
+      <pre>$ git clone git@github.com:programming-programmer/ftc_new.git</pre>
+      
       <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
-      <li>Now you can start coding!</li>
+      <li>Now you can start coding! :+1:</li>
     </ul>
   </details>
 
@@ -32,10 +40,16 @@ Owner of repository is @programming-programmer.
       <li>download ZIP folder</li>
       <li>Open the terminal (depends on your OS)</li>
       <li>In terminal, type "mv ftc_new-master.zip ~/StudioProjects" (this moves the zip file to Studio Projects)</li>
+      <pre>$ mv ftc_new-master.zip ~/StudioProjects</pre>
+      
       <li>In terminal, type "cd ~/StudioProjects" (this navigates to StudioProjects)</li>
+      <pre>$ cd ~/StudioProjects</pre>
+      
       <li>type "unzip ftc_new-master.zip" (pretty self-explanatory)</li>
+      <pre>$ unzip ftc_new-master.zip</pre>
+      
       <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
-      <li>Now you can start coding!</li>
+      <li>Now you can start coding! :+1:</li>
     </ul>
 </details>
 
