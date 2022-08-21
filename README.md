@@ -6,24 +6,32 @@ Owner of repository is @programming-programmer.
   - **First Download Android studio [here](https://developer.android.com/studio)**
   - <details>
     <summary>If you have Github Account follow this</summary>
-        No SSH Key set up / Don't know what that is:
+        <b>No SSH Key set up / Don't know what that is:</b>
     <ul>
       <li>Enter the terminal (depends on your OS)</li>
       <li>Navigate to StudioProjects folder (type "cd StudioProject" in most instances)</li>
       <li>type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
       <li>In Android Studio, select open project and this repository should be there</li>
     </ul>
+         <b>SSH Key set up:</b>
+    <ul>
+      <li>Enter the terminal (depends on your OS)</li>
+      <li>Navigate to StudioProjects folder (type "cd StudioProject" in most instances)</li>
+      <li>type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don'thave an ssh key set up follow directions under No SSH Key set up)</li>
+      <li>In Android Studio, select open project and this repository should be there</li>
+    </ul>
   </details>
 
-  - <details><summary>If you **do not** have a GitHub account follow this</summary>
-  <ul>
-    <li>Go to Code</li>
-    <li>download ZIP folder</li>
-    <li>type "mv ftc_new-master.zip" ~/StudioProjects</li>
-    <li>type "cd ~/StudioProjects"</li>
-    <li>type "unzip ftc_new-master.zip"</li>
-    <li>In Android Studio, select open project and this repository should be there</li>
-  </ul>
+  - <details>
+    <summary>If you <b>do not</b> have a GitHub account follow this</summary>
+    <ul>
+      <li>Go to Code</li>
+      <li>download ZIP folder</li>
+      <li>type "mv ftc_new-master.zip ~/StudioProjects"</li>
+      <li>type "cd ~/StudioProjects"</li>
+      <li>type "unzip ftc_new-master.zip"</li>
+      <li>In Android Studio, select open project and this repository should be there</li>
+    </ul>
 </details>
 
 ## Additional Notes
