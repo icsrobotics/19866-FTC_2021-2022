@@ -15,7 +15,7 @@ Owner of repository is @programming-programmer.
       <li>Now you can start coding!</li>
     </ul>
 
-         <b>SSH Key set up:</b>
+      <b>SSH Key set up:</b>
     <ul>
       <li>Open the terminal (depends on your OS)</li>
       <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located(type "cd StudioProject" in most instances)</li>
