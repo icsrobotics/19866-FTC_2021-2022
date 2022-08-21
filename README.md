@@ -2,9 +2,10 @@
 This is the programming repository of FTC Team #19866. This repository contains all Autonomous and TeleOp Opmodes. 
 Owner of repository is @programming-programmer. 
 
-# Additional Notes
+## Additional Notes
 - New Season Coming up - Plan to Update
 ---
+## Miscellanous
 - [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
 - [FTC Dashboard](https://acmerobotics.github.io/ftc-dashboard/gettingstarted)
   - When connected to Control Hub's Wifi go to: "192.168.43.1:8080/dash"
