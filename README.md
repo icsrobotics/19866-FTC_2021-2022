@@ -11,7 +11,7 @@ Owner of repository is @programming-programmer.
       <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
       <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
       <pre>$ cd ~/StudioProjects</pre>
-      <b>If no SSH Key is set up / You don't know what that is:</b>
+      <b>No SSH Key is set up / You don't know what that is:</b>
     <ul>
       <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
       <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
