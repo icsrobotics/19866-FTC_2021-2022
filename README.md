@@ -61,6 +61,7 @@ Owner of repository is @programming-programmer.
 - Common Errors:
   - When building the project via Gradle, the computer has to be connected to the actual internet. (This should not be a common error and I hate that it is)
 - To reach the actual code go to the TeamCode Folder > src > main > java > org > firstinspires > ftc > teamcode
+- If anyone wants to learn programming, learn Java (main language used in FTC) and learn FTC software. It's not that hard to find tutorials.
 
 ## Miscellanous
 - [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
