@@ -3,6 +3,7 @@ This is the programming repository of FTC Team #19866. This repository contains 
 Owner of repository is @programming-programmer. 
 
 # How to clone this repository
+❗***If you want to push to the master branch, contact @programming-programmer to add you as a collaborator. Only then can you proceed with the following.***
   - **If Android Studio is not installed, install it [here](https://developer.android.com/studio)**
   
   - <details>
