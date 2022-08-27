@@ -10,6 +10,8 @@ Owner of repository is @programming-programmer.
   - <details>
     <summary><b>If you have a Github account and git is set up:</b></summary>
         <li>Open the terminal (depends on your OS)</li>
+        <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
+        <br>
         <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
         <pre>$ cd ~/StudioProjects</pre>
       
