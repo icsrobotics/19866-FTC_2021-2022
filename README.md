@@ -8,20 +8,20 @@ Owner of repository is @programming-programmer.
   - **If Android Studio is not installed, install it [here](https://developer.android.com/studio)**
   
   - <details>
-    <summary><b>If you have a Github account and git is set up:</b></summary>
+    <summary>If you have a Github account and git is set up:</summary>
         <li>Open the terminal (depends on your OS)</li>
         <img src = "https://github.com/programming-programmer/ftc_new/blob/master/open-terminal-gif.gif" width = "700">
-        <br>
+        <br />
         <li>Navigate to StudioProjects folder, where all Anroid Studio Projects are located (type "cd ~/StudioProjects" in most instances)</li>
         <pre>$ cd ~/StudioProjects</pre>
-      
+        <br />
       <b>No SSH Key is set up / You don't know what that is:</b> <ul>
         <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
         <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
         <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
         <li>Now you can start coding! :+1:</li>
       </ul>
-      
+      <br />
       <b>SSH Key set up:</b><ul>
         <li>In terminal, type "git clone git@github.com:programming-programmer/ftc_new.git" (this selects ssh if you don't have a ssh key set up follow directions under "No SSH Key set up")</li>
         <pre>$ git clone git@github.com:programming-programmer/ftc_new.git</pre>
