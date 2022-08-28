@@ -33,7 +33,7 @@ Owner of repository is @programming-programmer.
 
 
   - <details>
-    <summary><b>If you <i>do not</i> have a GitHub account:</b></summary><ul>
+    <summary>If you <i>do not</i> have a GitHub account:</summary><ul>
       <li>Go to Code</li>
       <img src = "https://github.com/programming-programmer/ftc_new/blob/master/enter.png" width = "800">
       
@@ -63,6 +63,9 @@ Owner of repository is @programming-programmer.
   - When building the project via Gradle, the computer has to be connected to the actual internet. (This should not be a common error and I hate that it is)
 - To reach the actual code go to the TeamCode Folder > src > main > java > org > firstinspires > ftc > teamcode
 - If anyone wants to learn programming, learn Java (main language used in FTC) and learn FTC software. It's not that hard to find tutorials.
+- Notes To Self:
+  - Create method that sets power for all motors to zero 
+  - [IMU angle control yay!](https://www.youtube.com/watch?v=ayBnDBtcZdc)
 
 ## Miscellanous
 - [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
