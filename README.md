@@ -66,6 +66,10 @@ Owner of repository is @programming-programmer.
 - Notes To Self:
   - Create method that sets power for all motors to zero 
   - [IMU angle control yay!](https://www.youtube.com/watch?v=ayBnDBtcZdc)
+  - [Surprisingly easy download for robot control maybe not for actual dev](http://robotstudiosimulator.com/)
+  - [CTRL ALT FTC (best website for control theory in ftc)](https://www.ctrlaltftc.com/)
+  - [Control Theory(Straight forward but not completed)](https://blog.wesleyac.com/posts/intro-to-control-part-zero-whats-this)
+  - [FULL Documentation for FTC classes(where was this last year :pensive:)](https://ftctechnh.github.io/ftc_app/doc/javadoc/allclasses-frame.html)
 
 ## Miscellanous
 - [FTC Robot Controller GitHub Page](https://github.com/FIRST-Tech-Challenge/FtcRobotController/wiki)
