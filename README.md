@@ -33,7 +33,7 @@ Owner of repository is @programming-programmer.
 
 
   - <details>
-    <summary>If you <i>do not</i> have a GitHub account:</summary><ul>
+    <summary>If you <b>do not</b> have a GitHub account:</summary><ul>
       <li>Go to Code</li>
       <img src = "https://github.com/programming-programmer/ftc_new/blob/master/enter.png" width = "800">
       
