@@ -16,7 +16,7 @@ Owner of repository is @programming-programmer.
         <pre>$ cd ~/StudioProjects</pre>
         <br />
       <b>No SSH Key is set up / You don't know what that is:</b> <ul>
-        <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git" (this selects https if you have an ssh key set up follow directions under SSH key)</li>
+        <li>In terminal, type "git clone https://github.com/programming-programmer/ftc_new.git"</li>
         <pre>$ git clone https://github.com/programming-programmer/ftc_new.git</pre>
         <li>In Android Studio, select open project, locate "ftc_new", and then open it</li>
         <li>Now you can start coding! :+1:</li>
