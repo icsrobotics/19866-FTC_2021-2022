@@ -13,9 +13,6 @@ public class Robot_Hardware {
     public DcMotor  frontRight  = null;
     public DcMotor  frontLeft    = null;
 
-    //IMU stuff
-    public BNO055IMU imu;
-
     //Encoder stuff
     private final double          COUNTS_PER_MOTOR_REV            = 1440 ;    // eg: TETRIX Motor Encoder
     private final double          DRIVE_GEAR_REDUCTION            = 1.0 ;     // This is < 1.0 if geared UP
@@ -23,6 +20,10 @@ public class Robot_Hardware {
     private final double          COUNTS_PER_INCH                 = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     private final double          DRIVE_SPEED                     = 0.6;
     private final double          TURN_SPEED                      = 0.5;
+
+
+    //IMU stuff
+    public BNO055IMU imu;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -60,6 +61,8 @@ public class Robot_Hardware {
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // INTIIALIZE SERVOS HERE
+
+        // IMU Initialization
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.loggingEnabled = true;
         parameters.loggingTag     = "IMU";
