@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -11,6 +12,9 @@ public class Robot_Hardware {
     public DcMotor  backLeft    = null;
     public DcMotor  frontRight  = null;
     public DcMotor  frontLeft    = null;
+
+    //IMU stuff
+    public BNO055IMU imu;
 
     //Encoder stuff
     private final double          COUNTS_PER_MOTOR_REV            = 1440 ;    // eg: TETRIX Motor Encoder
@@ -56,7 +60,16 @@ public class Robot_Hardware {
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // INTIIALIZE SERVOS HERE
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.loggingEnabled = true;
+        parameters.loggingTag     = "IMU";
+        imu = hwMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
 
+        parameters.mode                = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = false;
     }
     
     public void stopMotors(){
