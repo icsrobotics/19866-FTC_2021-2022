@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 @Config
-@TeleOp(name = "Mecanum Driving ඞ", group = "Linear Opmode")
+@TeleOp(name = "Mecanum Driving", group = "Linear Opmode")
 
 public class Mecanum_Driving extends LinearOpMode {
 
