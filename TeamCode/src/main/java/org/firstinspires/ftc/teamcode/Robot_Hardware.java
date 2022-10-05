@@ -22,8 +22,6 @@ public class Robot_Hardware {
     private final double          TURN_SPEED                      = 0.5;
 
 
-    //IMU stuff
-    public BNO055IMU imu;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -40,9 +38,9 @@ public class Robot_Hardware {
         hwMap = ahwMap;
 
         frontLeft = hwMap.get(DcMotor.class, "Front_Left");
-        backLeft = hwMap.get(DcMotor.class, "Back_Right");
+        backLeft = hwMap.get(DcMotor.class, "Back_Left");
         frontRight = hwMap.get(DcMotor.class, "Front_Right");
-        backRight = hwMap.get(DcMotor.class, "Back_Left");
+        backRight = hwMap.get(DcMotor.class, "Back_Right");
 
         // Reverse motors
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -62,17 +60,7 @@ public class Robot_Hardware {
 
         // INTIIALIZE SERVOS HERE
 
-        // IMU Initialization
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.loggingEnabled = true;
-        parameters.loggingTag     = "IMU";
-        imu = hwMap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
 
-        parameters.mode                = BNO055IMU.SensorMode.IMU;
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.loggingEnabled      = false;
     }
     
     public void stopMotors(){
